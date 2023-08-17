@@ -1,7 +1,7 @@
-<nav class="w-full top-0 left-0 bg-white">
+<nav class="w-full top-0 left-0 bg-white sticky z-50">
     <div class="max-w-[90%] m-auto py-3 px-4 flex items-center justify-between">
         <a href="{{ route('home') }}">
-            <img src="{{ asset('assets/logo.jpg') }}" width="200" alt="Trade Fountain Logo">
+            <img src="{{ asset('assets/logo.png') }}" width="200" alt="Trade Fountain Logo">
         </a>
         <ul class="font-semibold">
             <a class="mx-4 py-1 hover:underline transition-all" href="#">Home</a>

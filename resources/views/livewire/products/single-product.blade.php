@@ -7,6 +7,12 @@
         <div class="w-full h-[600px] bg-{{ rand(1, 8) }} flex items-center justify-center">
             <img src="{{ asset('/storage/'.$product->image) }}" alt="{{ $product->name }} Image" class="w-[70%]">
         </div>
+        @if (session('success'))
+            <x-alerts.success :message="session('success')" />
+        @endif
+        <div wire:loading wire:target="add_to_cart">
+            <x-alerts.loading message="Adding to cart..." />
+        </div>
         <div class="w-full flex flex-col py-12">
             <h2 class="font-semibold text-3xl mb-6">{{ $product->name }}</h2>
             @if ($quantity && $quantity > 0)
@@ -21,7 +27,7 @@
                     <x-text-input id="quantity" autocomplete="off" min="0" wire:model="quantity" placeholder="Quantity" class="block mt-1 w-full" type="number" required />
                     <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
                 </div>
-                <button class="py-2 group items-center px-4 rounded-lg text-black border border-black h-fit w-full ml-3 hover:bg-black hover:text-white transition-all">
+                <button wire:click="add_to_cart" class="py-2 group items-center px-4 rounded-lg text-black border border-black h-fit w-full ml-3 hover:bg-black hover:text-white transition-all">
                     <div class="flex items-center justify-center">
                         <img src="https://api.iconify.design/solar:cart-large-broken.svg?color=%23000" class="mr-2 group-hover:hidden" alt="Cart Icon" width="23">
                         <img src="https://api.iconify.design/solar:cart-large-broken.svg?color=%23fff" class="mr-2 hidden group-hover:block" alt="Cart Icon" width="23"> Add to Cart
