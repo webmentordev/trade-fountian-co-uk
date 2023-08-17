@@ -16,6 +16,7 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+        @livewire('navbar')
         {{ $slot }}
         @livewireScripts
     </body>

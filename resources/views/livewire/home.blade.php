@@ -18,7 +18,7 @@
         <div class="grid grid-cols-4 gap-6">
             @foreach ($products as $product)
             <div class="w-full flex flex-col group">
-                <a href="#">
+                <a href="{{ route('single.product', $product->slug) }}">
                     <div class="flex items-center justify-center bg-{{ rand(1, 8) }} h-[300px] mb-3">
                         <img src="{{ asset('/storage/'. $product->image) }}" class="w-[70%]" alt="{{ $product->name }} Image">
                     </div>

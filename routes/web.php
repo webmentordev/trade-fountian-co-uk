@@ -2,11 +2,10 @@
 
 use App\Http\Livewire\Home;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Products\ProductsCreate;
 use App\Http\Livewire\Products\ProductsListing;
-
+use App\Http\Livewire\Products\SingleProduct;
 
 Route::get('/', Home::class)->name('home');
 
@@ -21,5 +20,7 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/products/listing', ProductsListing::class)->name('products.listing');
     Route::get('/products/create', ProductsCreate::class)->name('products.create');
 });
+
+Route::get('/product/{slug}', SingleProduct::class)->name('single.product');
 
 require __DIR__.'/auth.php';
