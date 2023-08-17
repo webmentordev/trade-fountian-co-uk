@@ -11,10 +11,11 @@ class ProductsCreate extends Component
 {
     use WithFileUploads;
 
-    public $name, $price = 0.0, $description, $body, $image;
+    public $name, $short, $price = 0.0, $description, $body, $image;
 
     protected $rules = [
         'name' => 'required|max:255|unique:products',
+        'short' => 'required|max:255|unique:products,short_name',
         'price' => 'required|numeric|min:1',
         'description' => 'required|max:500',
         'body' => 'required',
@@ -31,6 +32,8 @@ class ProductsCreate extends Component
     }
 
     public function create(){
+        $this->validate();
+        
         $stripe = new StripeClient(config('app.stripe'));
 
         $product = $stripe->products->create([
@@ -45,6 +48,7 @@ class ProductsCreate extends Component
 
         Product::create([
             'name' => $this->name,
+            'short_name' => $this->short,
             'slug' => str_replace(' ', '-', strtolower($this->name)).'-'.rand(1, 9999999),
             'price' => $this->price,
             'image' => $this->image->store('product_images', 'public_disk'),
