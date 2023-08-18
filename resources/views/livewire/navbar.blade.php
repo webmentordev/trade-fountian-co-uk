@@ -6,7 +6,7 @@
         <ul class="font-semibold">
             <a class="mx-4 py-1 hover:underline transition-all" href="#">Home</a>
             <a class="mx-4 py-1 hover:underline transition-all" href="{{ route('home') }}#products">Products</a>
-            <a class="mx-4 py-1 hover:underline transition-all" href="#">Cart</a>
+            <a class="mx-4 py-1 hover:underline transition-all" href="{{ route('cart') }}">Cart</a>
             <a class="mx-4 py-1 hover:underline transition-all" href="#">Contact</a>
             <a class="mx-4 py-1 hover:underline transition-all" href="#">About</a>
         </ul>

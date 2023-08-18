@@ -3,6 +3,7 @@
 use App\Http\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\CartArea;
 use App\Http\Livewire\Client;
 use App\Http\Livewire\Products\ProductsCreate;
 use App\Http\Livewire\Products\ProductsListing;
@@ -16,6 +17,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/client', Client::class)->name('client');
+    Route::get('/cart', CartArea::class)->name('cart');
 });
 
 
