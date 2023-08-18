@@ -17,7 +17,7 @@
                     @if (auth()->user()->is_admin)
                         <a class="pr-5 py-1 hover:underline transition-all border-r border-gray-100" href="{{ route('dashboard') }}">Dashboard</a>
                     @endif
-                    <a class="mx-4 pr-4 py-1 hover:underline transition-all border-r border-gray-100" href="#">Client</a>
+                    <a class="mx-4 pr-4 py-1 hover:underline transition-all border-r border-gray-100" href="{{ route('client') }}">Client</a>
                 @endauth
                 @guest
                     <a class="pr-5 py-1 hover:underline transition-all border-r border-gray-100" href="{{ route('login') }}">Login</a>

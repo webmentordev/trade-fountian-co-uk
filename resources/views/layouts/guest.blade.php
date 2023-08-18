@@ -15,14 +15,15 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
+        <div class="min-h-screen flex flex-col sm:justify-center items-center relative pt-6 sm:pt-0 bg-cover bg-center" style="background-image: url({{ asset('assets/guest.jpg') }})">
+            <div class="absolute top-0 left-0 w-full h-full bg-black/40 backdrop-blur-sm"></div>
+            <div class="relative z-10">
                 <a href="/">
                     <img src="{{ asset('assets/logo.png') }}" alt="Trade Fountain Logo" width="360">
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full relative z-10 sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>

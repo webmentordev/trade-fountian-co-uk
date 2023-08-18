@@ -49,7 +49,7 @@ class ProductsCreate extends Component
         Product::create([
             'name' => $this->name,
             'short_name' => $this->short,
-            'slug' => str_replace(' ', '-', strtolower($this->name)).'-'.rand(1, 9999999),
+            'slug' => str_replace(' ', '-', strtolower($this->short)).'-'.rand(1, 9999999),
             'price' => $this->price,
             'image' => $this->image->store('product_images', 'public_disk'),
             'description' => $this->description,
