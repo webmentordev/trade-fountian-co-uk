@@ -57,3 +57,7 @@ html{
 .price{
     font-family: 'Rubik', sans-serif;
 }
+
+.main-body p{
+    @apply mb-3;
+}

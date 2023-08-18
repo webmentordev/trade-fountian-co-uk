@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\Shipping;
 
 class CartArea extends Component
 {
@@ -50,5 +51,30 @@ class CartArea extends Component
         }else{
             abort(404, 'Not Found!');
         }
+    }
+
+
+    public function remove($slug){
+        $product = Product::where('slug', $slug)->first();
+        if($product){
+            Cart::where('product_id', $product->id)->delete();
+        }else{
+            abort(404, 'Not Found!');
+        }
+    }
+
+    public function empty_cart(){
+        Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->delete();
+    }
+
+
+    public function checkout(){
+        $this->validate();
+
+        $cart = Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->get();
+
+        Shipping::create([
+
+        ]);
     }
 }

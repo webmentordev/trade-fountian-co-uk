@@ -13,15 +13,15 @@
         <div wire:loading wire:target="add_to_cart">
             <x-alerts.loading message="Adding to cart..." />
         </div>
-        <div class="w-full flex flex-col py-12">
+        <div class="w-full flex flex-col py-6">
             <h2 class="font-semibold text-3xl mb-6">{{ $product->name }}</h2>
             @if ($quantity && $quantity > 0)
                 <span class="text-red-500 text-4xl font-semibold price mb-3">${{ $product->price * $quantity }}</span>
             @else
                 <span class="text-red-500 text-4xl font-semibold price mb-3">${{ $product->price }}</span>
             @endif
+            <h3 class="mb-2 text-3xl title">About This Item</h3>
             {!! $product->description !!}
-            {!! $product->body !!}
             <div class="flex items-center mt-6">
                 <div class="w-full">
                     <x-text-input id="quantity" autocomplete="off" min="0" wire:model="quantity" placeholder="Quantity" class="block mt-1 w-full" type="number" required />
@@ -33,12 +33,25 @@
                         <img src="https://api.iconify.design/solar:cart-large-broken.svg?color=%23fff" class="mr-2 hidden group-hover:block" alt="Cart Icon" width="23"> Add to Cart
                     </div>
                 </button>
-                <a href="#" class="py-2 items-center px-4 bg-black rounded-lg text-white h-fit w-full ml-3 text-center font-semibold">Checkout</a>
+                <a href="{{ route('cart') }}" class="py-2 items-center px-4 bg-black rounded-lg text-white h-fit w-full ml-3 text-center font-semibold">Checkout</a>
             </div>
             <div class="flex justify-between items-center w-full py-3">
                 <img class="w-[200px]" src="{{ asset('assets/payment_cards.png') }}" alt="Stripe Payment Methods">
                 <img class="w-[150px]" src="{{ asset('assets/stripe.png') }}" alt="Stripe Logo">
             </div>
         </div>
+    </div>
+
+    <div class="max-w-3xl m-auto">
+        <h3 class="mb-3 text-4xl font-semibold price">Product Description</h3>
+        <main class="main-body">
+            {!! $product->body !!}
+            {!! $product->body !!}
+            {!! $product->body !!}
+            {!! $product->body !!}
+            {!! $product->body !!}
+            {!! $product->body !!}
+            {!! $product->body !!}
+        </main>
     </div>
 </section>
