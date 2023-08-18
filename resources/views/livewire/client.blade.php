@@ -1,7 +1,7 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="py-6 text-gray-900 flex items-center justify-between">
-            <h1 class="text-5xl title">Welcome to Client Area, <span class="text-yellow-400">{{ auth()->user()->name }}</span> 👋</h1>  
+            <h1 class="text-5xl title">Welcome to Client Area, <span class="text-orange-400">{{ auth()->user()->name }}</span> 👋</h1>  
         </div>
         @if (count($orders))
             <div class="flex flex-col">
@@ -9,11 +9,11 @@
                     <div class="bg-gray-100 mb-6 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 flex items-center justify-between">
                             <div class="flex items-center">
-                                <img src="{{ asset('/storage/'. $order->product->image) }}" width="50px" alt="{{ $order->product->short_name }} Image">
+                                <img data-src="{{ asset('/storage/'. $order->product->image) }}" width="50px" class="lazyload" alt="{{ $order->product->short_name }} Image">
                                 <div class="flex flex-col">
                                     <div class="flex">
                                         <b class="ml-3 font-semibold mr-3">{{ $order->product->short_name }}</b>
-                                        (<span class="ml-1 text-blue-500">x {{ $order->quantity }}</span>)
+                                        (<span class="ml-1 text-orange-500">x {{ $order->quantity }}</span>)
                                     </div>
                                     @if ($order->order_id)
                                         <p class="ml-3"><b class="mr-2">OrderID:</b>{{ $order->order_id }}</p>
@@ -28,7 +28,7 @@
                                     @elseif ($order->status == 'cancelled')
                                     <span class="py-2 mr-2 flex items-center px-4 rounded-xl bg-red-400/20 text-black"><i class="h-[10px] w-[10px] rounded-full bg-red-400 mr-2"></i> Cancelled</span>
                                 @endif
-                                <h4 class="text-4xl ml-3 font-semibold price">${{ number_format($order->product->price * $order->quantity, 2) }}</h4>
+                                <h4 class="text-3xl ml-3 font-semibold price">${{ number_format($order->product->price * $order->quantity, 2) }}</h4>
                             </div>
                         </div>
                     </div>

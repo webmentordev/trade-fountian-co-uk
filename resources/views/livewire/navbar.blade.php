@@ -4,24 +4,24 @@
             <img src="{{ asset('assets/logo.png') }}" width="200" alt="Trade Fountain Logo">
         </a>
         <ul class="font-semibold">
-            <a class="mx-4 py-1 hover:underline transition-all" href="#">Home</a>
-            <a class="mx-4 py-1 hover:underline transition-all" href="{{ route('home') }}#products">Products</a>
-            <a class="mx-4 py-1 hover:underline transition-all" href="{{ route('cart') }}">Cart</a>
-            <a class="mx-4 py-1 hover:underline transition-all" href="#">Contact</a>
-            <a class="mx-4 py-1 hover:underline transition-all" href="#">About</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="#">Home</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('home') }}#products">Products</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('cart') }}">Cart</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="#">Contact</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="#">About</a>
         </ul>
         
         <div class="flex items-center">
             <ul class="font-semibold">
                 @auth
                     @if (auth()->user()->is_admin)
-                        <a class="pr-5 py-1 hover:underline transition-all border-r border-gray-100" href="{{ route('dashboard') }}">Dashboard</a>
+                        <a class="pr-5 py-1 hover:text-orange-400 transition-all border-r border-gray-100" href="{{ route('dashboard') }}">Dashboard</a>
                     @endif
-                    <a class="mx-4 pr-4 py-1 hover:underline transition-all border-r border-gray-100" href="{{ route('client') }}">Client</a>
+                    <a class="mx-4 pr-4 py-1 hover:text-orange-400 transition-all border-r border-gray-100" href="{{ route('client') }}">Client</a>
                 @endauth
                 @guest
-                    <a class="pr-5 py-1 hover:underline transition-all border-r border-gray-100" href="{{ route('login') }}">Login</a>
-                    <a class="mx-4 py-1 hover:underline transition-all" href="{{ route('register') }}">Signup</a>
+                    <a class="pr-5 py-1 hover:text-orange-400 transition-all border-r border-gray-100" href="{{ route('login') }}">Login</a>
+                    <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('register') }}">Signup</a>
                 @endguest
             </ul>
             <div x-data="{ open: false }" class="ml-3">

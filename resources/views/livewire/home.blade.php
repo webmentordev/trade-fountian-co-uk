@@ -18,7 +18,7 @@
             @foreach ($products as $product)
             <a href="{{ route('single.product', $product->slug) }}" class="w-full flex flex-col group">
                 <div class="flex items-center justify-center bg-{{ rand(1, 8) }} h-[300px] mb-3">
-                    <img src="{{ asset('/storage/'. $product->image) }}" class="w-[70%]" alt="{{ $product->name }} Image">
+                    <img data-src="{{ asset('/storage/'. $product->image) }}" class="w-[70%] lazyload" alt="{{ $product->name }} Image">
                 </div>
                 <h3>{{ $product->short_name }}</h3>
                 <span class="price font-semibold text-gray-500 transition-all group-hover:translate-y-10 group-hover:opacity-0 group-hover:hidden">${{ $product->price }}</span>
