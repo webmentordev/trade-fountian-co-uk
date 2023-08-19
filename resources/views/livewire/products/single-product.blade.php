@@ -46,12 +46,6 @@
         <h3 class="mb-3 text-4xl font-semibold price">Product Description</h3>
         <main class="main-body">
             {!! $product->body !!}
-            {!! $product->body !!}
-            {!! $product->body !!}
-            {!! $product->body !!}
-            {!! $product->body !!}
-            {!! $product->body !!}
-            {!! $product->body !!}
         </main>
     </div>
 </section>

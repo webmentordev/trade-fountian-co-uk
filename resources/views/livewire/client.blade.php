@@ -1,8 +1,23 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="py-6 text-gray-900 flex items-center justify-between">
-            <h1 class="text-5xl title">Welcome to Client Area, <span class="text-orange-400">{{ auth()->user()->name }}</span> 👋</h1>  
+            <h1 class="text-5xl title">Welcome to Client Area, <span class="text-orange-400">{{ auth()->user()->name }}</span> 👋</h1>
+            <div class="flex items-center">
+                <h3 class="title mr-2">Filters:</h3>
+                <button class="py-1 mr-2 text-sm flex items-center px-4 rounded-xl bg-green-400/20 text-black" wire:click="filter('completed')">Completed</button>
+                <button class="py-1 mr-2 text-sm flex items-center px-4 rounded-xl bg-red-400/20 text-black" wire:click="filter('cancelled')">Cancelled</button>
+                <button class="py-1 mr-2 text-sm flex items-center px-4 rounded-xl bg-yellow-400/20 text-black" wire:click="filter('pending')">Pending</button>
+                <button class="py-1 mr-2 text-sm flex items-center px-4 rounded-xl bg-blue-400/20 text-black" wire:click="filter('all')">All</button>
+            </div>
         </div>
+        
+        <div class="flex items-center justify-center w-full" wire:loading wire:target='filter'>
+            <div class="flex items-center m-auto w-fit">
+                <img src="https://api.iconify.design/eos-icons:loading.svg?color=%2337d82c" alt="Check Icon" width="30">
+                <p>Loading...</p>
+            </div>
+        </div>
+        
         @if (count($orders))
             <div class="flex flex-col">
                 @foreach ($orders as $order)
@@ -17,6 +32,7 @@
                                     </div>
                                     @if ($order->order_id)
                                         <p class="ml-3"><b class="mr-2">OrderID:</b>{{ $order->order_id }}</p>
+                                        <p class="ml-3"><b class="mr-2">Ordered:</b>{{ $order->created_at->diffForHumans() }} - {{ $order->created_at->format('D d/m/y H:s:i A') }} (UTC)</p>
                                     @endif
                                 </div>
                             </div>
