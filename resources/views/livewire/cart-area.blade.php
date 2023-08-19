@@ -22,7 +22,7 @@
                     @foreach ($orders as $order)
                         <tr class="odd:bg-orange-100/50 odd:border-y odd:border-b odd:border-orange-100">
                             <td class="text-start px-3 py-4 flex items-center">
-                                <img data-src="{{ asset('/storage/'. $order->product->image) }}" width="40" class="lazyload" alt="{{ $order->product->name }} Image">
+                                <img src="{{ asset('/storage/'. $order->product->image) }}" width="40" alt="{{ $order->product->name }} Image">
                                 <a href="{{ route('single.product', $order->product->slug) }}" class="ml-2 underline text-gray-500">{{ $order->product->short_name }}</a>
                             </td>
                             <td class="text-start">
@@ -49,38 +49,42 @@
 
         <div class="w-full bg-gray-100 rounded-lg p-6">
             <h2 class="price text-3xl font-bold mb-4">Payment Info</h2>
-            <div class="w-full mb-3">
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" wire:model="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-
-            <div class="w-full mb-3">
-                <x-input-label for="name" :value="__('Name')" />
-                <x-text-input id="name" wire:model="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            </div>
-
-            <div class="w-full mb-3">
-                <x-input-label for="number" :value="__('Contact Number (shipping purpose)')" />
-                <x-text-input id="number" wire:model="number" class="block mt-1 w-full" type="number" name="number" :value="old('number')" required />
-                <x-input-error :messages="$errors->get('number')" class="mt-2" />
-            </div>
-
-            <div class="w-full mb-3">
-                <x-input-label for="address" :value="__('Shipping Address')" />
-                <x-text-input id="address" wire:model="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
-                <x-input-error :messages="$errors->get('address')" class="mt-2" />
-            </div>
-
-            <ul class="bg-white mb-3 rounded-lg">
-                <li class="flex justify-between py-2 px-3"><b>Shipping</b><span class="text-gray-500">$0.00</span></li>
-                <li class="flex justify-between py-2 px-3"><b>Tax</b><span class="text-gray-500">$0.00</span></li>
-                <li class="flex items-center justify-between py-2 px-3"><b>Subtotal (pay)</b><span class="text-xl font-bold price text-orange-500">${{ number_format($total, 2) }}</span></li>
-            </ul>
-            <x-primary-button class="mb-3">
-                {{ __('Checkout') }}
-            </x-primary-button>
+            <form wire:submit.prevent='checkout' method="post">
+                <div class="w-full mb-3">
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input id="email" wire:model="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
+    
+                <div class="w-full mb-3">
+                    <x-input-label for="name" :value="__('Name')" />
+                    <x-text-input id="name" wire:model="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                </div>
+    
+                <div class="w-full mb-3">
+                    <x-input-label for="number" :value="__('Contact Number (shipping purpose)')" />
+                    <x-text-input id="number" wire:model="number" class="block mt-1 w-full" type="number" name="number" :value="old('number')" required />
+                    <x-input-error :messages="$errors->get('number')" class="mt-2" />
+                </div>
+    
+                <div class="w-full mb-3">
+                    <x-input-label for="address" :value="__('Shipping Address')" />
+                    <x-text-input id="address" wire:model="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
+                    <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                </div>
+    
+                <ul class="bg-white mb-3 rounded-lg">
+                    <li class="flex justify-between py-2 px-3"><b>Shipping</b><span class="text-gray-500">$0.00</span></li>
+                    <li class="flex justify-between py-2 px-3"><b>Tax</b><span class="text-gray-500">$0.00</span></li>
+                    <li class="flex items-center justify-between py-2 px-3"><b>Subtotal (pay)</b><span class="text-xl font-bold price text-orange-500">${{ number_format($total, 2) }}</span></li>
+                </ul>
+                @if (count($orders))
+                    <x-primary-button class="mb-3">
+                        {{ __('Checkout') }}
+                    </x-primary-button>
+                @endif
+            </form>
             <div class="flex justify-between items-center w-full py-3">
                 <img class="w-[180px]" src="{{ asset('assets/payment_cards.png') }}" alt="Stripe Payment Methods">
                 <img class="w-[100px]" src="{{ asset('assets/stripe.png') }}" alt="Stripe Logo">

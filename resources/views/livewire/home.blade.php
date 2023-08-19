@@ -14,21 +14,25 @@
 <section class="w-full">
     <div class="max-w-6xl m-auto py-12 px-4 w-full" id="products">
         <h2 class="text-5xl title mb-4">New Arrivals</h2>
-        <div class="grid grid-cols-4 gap-6">
-            @foreach ($products as $product)
-            <a href="{{ route('single.product', $product->slug) }}" class="w-full flex flex-col group">
-                <div class="flex items-center justify-center bg-{{ rand(1, 8) }} h-[300px] mb-3">
-                    <img data-src="{{ asset('/storage/'. $product->image) }}" class="w-[70%] lazyload" alt="{{ $product->name }} Image">
-                </div>
-                <h3>{{ $product->short_name }}</h3>
-                <span class="price font-semibold text-gray-500 transition-all group-hover:translate-y-10 group-hover:opacity-0 group-hover:hidden">${{ $product->price }}</span>
-                <div class="py-3 items-center px-4 mt-3 bg-black rounded-lg text-white hidden transition-all group-hover:translate-y-0 group-hover:opacity-1 group-hover:block">
-                    <div class="flex items-center justify-center">
-                        <img src="https://api.iconify.design/material-symbols:expand-circle-right.svg?color=%23fff" class="mr-2" alt="Cart Icon" width="23"> Read More
-                    </div>
-                </div>
-            </a>
-        @endforeach
-        </div>
+        @if (count($products))
+            <div class="grid grid-cols-4 gap-6">
+                @foreach ($products as $product)
+                    <a href="{{ route('single.product', $product->slug) }}" class="w-full flex flex-col group">
+                        <div class="flex items-center justify-center bg-{{ rand(1, 8) }} h-[300px] mb-3">
+                            <img data-src="{{ asset('/storage/'. $product->image) }}" class="w-[70%] lazyload" alt="{{ $product->name }} Image">
+                        </div>
+                        <h3>{{ $product->short_name }}</h3>
+                        <span class="price font-semibold text-gray-500 transition-all group-hover:translate-y-10 group-hover:opacity-0 group-hover:hidden">${{ $product->price }}</span>
+                        <div class="py-3 items-center px-4 mt-3 bg-black rounded-lg text-white hidden transition-all group-hover:translate-y-0 group-hover:opacity-1 group-hover:block">
+                            <div class="flex items-center justify-center">
+                                <img src="https://api.iconify.design/material-symbols:expand-circle-right.svg?color=%23fff" class="mr-2" alt="Cart Icon" width="23"> Read More
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @else
+            <p class="py-6 text-center">We don't have any product available at the moment! Please come later 🙂</p>
+        @endif
     </div>
 </section>

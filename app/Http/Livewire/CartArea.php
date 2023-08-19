@@ -2,14 +2,23 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Shipping;
+use Stripe\StripeClient;
 
 class CartArea extends Component
 {
     public $name, $email, $address, $number;
+
+    protected $rules = [
+        'name' => 'required',
+        'email' => 'required|email',
+        'address' => 'required',
+        'number' => 'required|numeric',
+    ];
 
     public function render()
     {
@@ -67,14 +76,68 @@ class CartArea extends Component
         Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->delete();
     }
 
+    public function randomStringGenerator() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 20; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
+
+    public function randomCheckoutGenerator() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 120; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass);
+    }
 
     public function checkout(){
         $this->validate();
+        $orders = Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->get();
 
-        $cart = Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->get();
+        if(count($orders) > 0){
+            $stripe = new StripeClient(config('app.stripe'));
 
-        Shipping::create([
+            $order_id = $this->randomStringGenerator();
+            $checkout_id = $this->randomCheckoutGenerator();
+            Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->update([
+                'order_id' => $order_id,
+                'checkout_id' => $checkout_id
+            ]);
 
-        ]);
+            foreach($orders as $order){
+                $array[] = [ 'price' => $order->product->price_id, 'quantity' => $order->quantity ];
+            }
+
+            $checkout = $stripe->checkout->sessions->create([
+                'success_url' => config('app.url').'/success/'.$checkout_id,
+                'cancel_url' => config('app.url').'/cancel/'.$checkout_id,
+                'currency' => "EUR",
+                'billing_address_collection' => 'required',
+                'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
+                'line_items' => $array,
+                'mode' => 'payment'
+            ]);
+
+            Shipping::create([
+                'name' => $this->name,
+                'user_id' => auth()->user()->id,
+                'order_id' => $order_id,
+                'email' => $this->email,
+                'number' => $this->number,
+                'address' => $this->address
+            ]);
+
+            return redirect($checkout['url']);
+        }else{
+            abort(500, 'Not Found!');
+        }
     }
 }

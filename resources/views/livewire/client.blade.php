@@ -44,7 +44,7 @@
         @else
             <div class="bg-gray-100 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You do not have any product Purchased!") }}
+                    {{ __("You do not have any purchased products!") }}
                 </div>
             </div>
         @endif

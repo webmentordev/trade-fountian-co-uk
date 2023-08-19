@@ -42,7 +42,7 @@ class ProductsCreate extends Component
 
         $price = $stripe->prices->create([
             'unit_amount' => $this->price * 100,
-            'currency' => 'USD',
+            'currency' => 'EUR',
             'product' => $product['id'],
         ]);
 

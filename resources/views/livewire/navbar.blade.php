@@ -4,11 +4,9 @@
             <img src="{{ asset('assets/logo.png') }}" width="200" alt="Trade Fountain Logo">
         </a>
         <ul class="font-semibold">
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="#">Home</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('home') }}">Home</a>
             <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('home') }}#products">Products</a>
             <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('cart') }}">Cart</a>
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="#">Contact</a>
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="#">About</a>
         </ul>
         
         <div class="flex items-center">
@@ -24,12 +22,9 @@
                     <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('register') }}">Signup</a>
                 @endguest
             </ul>
-            <div x-data="{ open: false }" class="ml-3">
-                <div x-on:click="open = !open" class="p-2 bg-gray-100 rounded-full flex items-center cursor-pointer">
-                    <img src="https://api.iconify.design/mingcute:shopping-bag-2-fill.svg?color=%232f322f" alt="Cart Icon" width="25">
-                    {{-- <span class="bg-black text-white py-1 px-2 rounded-full text-sm">{{ 2 }}</span> --}}
-                </div>
-            </div>
+            <a href="{{ route('cart') }}" class="p-2 ml-3 bg-gray-100 rounded-full flex items-center cursor-pointer">
+                <img src="https://api.iconify.design/mingcute:shopping-bag-2-fill.svg?color=%232f322f" alt="Cart Icon" width="25">
+            </a>
             @auth
                 <form action="{{ route('logout') }}" method="post">
                     @csrf

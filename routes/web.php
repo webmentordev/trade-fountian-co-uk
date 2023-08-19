@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Livewire\Home;
+use App\Http\Livewire\Client;
+use App\Http\Livewire\CartArea;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Livewire\CartArea;
-use App\Http\Livewire\Client;
-use App\Http\Livewire\Products\ProductsCreate;
-use App\Http\Livewire\Products\ProductsListing;
 use App\Http\Livewire\Products\SingleProduct;
+use App\Http\Livewire\Products\ProductsCreate;
+use App\Http\Controllers\OrderStatusController;
+use App\Http\Livewire\Products\ProductsListing;
 
 Route::get('/', Home::class)->name('home');
 
@@ -20,6 +21,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/cart', CartArea::class)->name('cart');
 });
 
+Route::get('/cancel/{checkout_id}', [OrderStatusController::class, 'cancel']);
+Route::get('/success/{checkout_id}', [OrderStatusController::class, 'success']);
 
 Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -30,5 +33,4 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
 });
 
 Route::get('/product/{slug}', SingleProduct::class)->name('single.product');
-
 require __DIR__.'/auth.php';
