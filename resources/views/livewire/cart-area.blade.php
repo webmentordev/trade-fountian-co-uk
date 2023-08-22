@@ -1,5 +1,5 @@
-<section class="w-full h-screen">
-    <div class="max-w-7xl m-auto py-12 px-4 grid grid-cols-3 gap-12">
+<section class="w-full min-h-screen">
+    <div class="max-w-7xl m-auto py-12 px-4 grid grid-cols-3 gap-12 1140:grid-cols-2 1140:max-w-3xl">
         <div class="w-full col-span-2">
             <div class="flex items-center pb-6 justify-between">
                 <h2 class="text-4xl price font-bold">Shopping Cart.</h2>
@@ -11,32 +11,28 @@
                 @endif
             </div>
             <x-input-error :messages="$errors->get('quantity')" class="mt-2" />
+            <div class="flex items-center justify-between py-2 555:hidden">
+                <b class="text-lg">Product</b>
+                <b class="text-lg">Price</b>
+            </div>
             @if (count($orders))
-                <table class="w-full mb-6">
-                    <tr class="border-b border-gray-200">
-                    <th class="text-start p-4">Product</th> 
-                    <th class="text-center">Quantity</th> 
-                    <th class="text-end">Price</th> 
-                    <th class="text-end">Remove</th> 
-                    </tr>
-                    @foreach ($orders as $order)
-                        <tr class="odd:bg-orange-100/50 odd:border-y odd:border-b odd:border-orange-100">
-                            <td class="text-start px-3 py-4 flex items-center">
-                                <img src="{{ asset('/storage/'. $order->product->image) }}" width="40" alt="{{ $order->product->name }} Image">
-                                <a href="{{ route('single.product', $order->product->slug) }}" class="ml-2 underline text-gray-500">{{ $order->product->short_name }}</a>
-                            </td>
-                            <td class="text-start">
-                                <div class="flex justify-center items-center">
-                                    <button class="py-2 px-2 rounded-full bg-orange-600/10" wire:click="decrement('{{ $order->product->slug }}')"><img src="https://api.iconify.design/ic:baseline-minus.svg?color=%23e85617" alt="Bin Icon"></button>
-                                    <span class="p-1 px-3 mx-3 rounded-full bg-orange-200">{{ $order->quantity }}</span>
-                                    <button class="py-2 px-2 rounded-full bg-orange-600/10" wire:click="increment('{{ $order->product->slug }}')"><img src="https://api.iconify.design/material-symbols:add.svg?color=%23e85617" alt="Bin Icon"></button>
-                                </div>
-                            </td>
-                            <td class="text-end price">${{ $order->total }}</td>
-                            <td class="text-end p-2"><button class="py-2 px-2 rounded-full bg-orange-600/10" wire:click="remove('{{ $order->product->slug }}')"><img src="https://api.iconify.design/solar:trash-bin-minimalistic-bold.svg?color=%23e85617" alt="Bin Icon"></button></td>
-                        </tr>
-                    @endforeach
-                </table>
+                @foreach ($orders as $order)
+                    <div class="even:bg-orange-100/50 mb-3 flex justify-between 555:flex-col items-center even:border-y even:border-b even:border-orange-100">
+                        <div class="text-start px-3 py-4 flex items-center">
+                            <img src="{{ asset('/storage/'. $order->product->image) }}" width="40" alt="{{ $order->product->name }} Image">
+                            <a href="{{ route('single.product', $order->product->slug) }}" class="ml-2 underline text-gray-500">{{ $order->product->short_name }}</a>
+                            <b class="ml-1">(<span class="text-orange-600">x{{ $order->quantity }}</span>)</b>
+                            <div class="flex justify-center items-center ml-2">
+                                <button class="py-2 mr-1 px-2 rounded-full bg-orange-600/10" wire:click="decrement('{{ $order->product->slug }}')"><img src="https://api.iconify.design/ic:baseline-minus.svg?color=%23e85617" alt="Bin Icon"></button>
+                                <button class="py-2 px-2 rounded-full bg-orange-600/10" wire:click="increment('{{ $order->product->slug }}')"><img src="https://api.iconify.design/material-symbols:add.svg?color=%23e85617" alt="Bin Icon"></button>
+                            </div>
+                        </div>
+                        <div class="flex items-center px-3">
+                            <div class="text-end price">${{ $order->total }}</div>
+                            <button class="py-2 px-2 ml-2 rounded-full bg-orange-600/10" wire:click="remove('{{ $order->product->slug }}')"><img src="https://api.iconify.design/solar:trash-bin-minimalistic-bold.svg?color=%23e85617" alt="Bin Icon"></button>
+                        </div>
+                    </div>
+                @endforeach
             @else
                 <p class="mb-4 p-6 rounded-lg text-orange-600 bg-orange-600/20">No product exist in the cart! Check our collection <a href="{{ route('home') }}#products" class="underline font-semibold">products</a></p>
             @endif
@@ -47,7 +43,7 @@
             
         </div>
 
-        <div class="w-full bg-gray-100 rounded-lg p-6">
+        <div class="w-full bg-gray-100 rounded-lg p-6 1140:col-span-2">
             <h2 class="price text-3xl font-bold mb-4">Payment Info</h2>
             <form wire:submit.prevent='checkout' method="post">
                 <div class="w-full mb-3">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Products;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -22,5 +23,6 @@ class ProductsListing extends Component
     public function updateStatus(Product $product, $status){
         $product->is_active = $status;
         $product->save();
+        Cart::where('product_id', $product->id)->where('status', 'pending')->delete();
     }
 }

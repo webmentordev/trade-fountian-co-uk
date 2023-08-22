@@ -9,6 +9,11 @@ use Livewire\Component;
 use App\Models\Shipping;
 use Stripe\StripeClient;
 
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
+
 class CartArea extends Component
 {
     public $name, $email, $address, $number;
@@ -22,6 +27,21 @@ class CartArea extends Component
 
     public function render()
     {
+        SEOMeta::setTitle("Cart");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "Trade Fountain");
+        SEOMeta::addMeta("application-name", "Trade Fountain");
+
+
+        OpenGraph::setTitle("Cart");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+
+        TwitterCard::setTitle("Cart");
+        TwitterCard::setSite('@tradefountainuk');
+        JsonLd::setTitle("Cart");
+        JsonLd::setType("WebSite");
+
         return view('livewire.cart-area', [
             'orders' => Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->get(),
             'total' => Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->sum('total')
