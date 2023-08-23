@@ -4,10 +4,11 @@ use App\Http\Livewire\Home;
 use App\Http\Livewire\Client;
 use App\Http\Livewire\CartArea;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Products\SingleProduct;
-use App\Http\Livewire\Products\ProductsCreate;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Livewire\GelleryListing;
 use App\Http\Livewire\Products\ProductsListing;
 
 Route::get('/', Home::class)->name('home');
@@ -29,7 +30,11 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/products/listing', ProductsListing::class)->name('products.listing');
-    Route::get('/products/create', ProductsCreate::class)->name('products.create');
+
+    Route::get('gellery', GelleryListing::class)->name('gellery');
+
+    Route::get('/product/create', [ProductController::class, 'index'])->name('create.product');
+    Route::post('/product/create', [ProductController::class, 'store']);
 });
 
 Route::get('/product/{slug}', SingleProduct::class)->name('single.product');

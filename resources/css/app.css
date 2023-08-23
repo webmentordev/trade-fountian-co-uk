@@ -59,9 +59,13 @@ html{
 }
 
 .main-body p{
-    @apply mb-3;
+    @apply mb-4;
 }
 
 .main-body h2{
+    @apply font-semibold text-4xl mb-2;
+}
+
+.main-body h3{
     @apply font-semibold text-2xl mb-2;
 }

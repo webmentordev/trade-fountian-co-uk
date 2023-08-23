@@ -3,10 +3,21 @@
         <div class="absolute top-0 left-0 h-full w-full bg-black/50 backdrop-blur-sm"></div>
         <h1 class="title text-4xl text-white relative z-10">Product Details / Buy Now</h1>
     </header>
-    <div class="max-w-7xl py-12 px-4 w-full grid grid-cols-2 gap-12 980px:grid-cols-1 980px:max-w-xl m-auto">
-        <div class="w-full h-[600px] bg-gray-100 flex items-center justify-center">
-            {{-- bg-{{ rand(1, 8) }} --}}
-            <img src="{{ asset('/storage/'.$product->image) }}" alt="{{ $product->name }} Image" class="w-[70%]">
+    <div class="max-w-7xl py-12 relative px-4 w-full grid grid-cols-2 gap-12 980px:grid-cols-1 980px:max-w-xl m-auto">
+        <div class="w-full">
+            <div class="h-[600px] bg-gray-100 flex items-center justify-center">
+                {{-- bg-{{ rand(1, 8) }} --}}
+                <img src="{{ asset('/storage/'.$product->image) }}" alt="{{ $product->name }} Image" class="w-[70%]">
+            </div>
+            @if (count($product->images))
+                <div class="grid grid-cols-{{ count($product->images) }} gap-3 py-3 w-full">
+                    @foreach ($product->images as $image)
+                        <div class="p-3 border group border-gray-300 rounded-lg cursor-pointer flex items-center justify-center">
+                            <img src="{{ asset('/storage/'. $image->url) }}" class="w-[80%] top-[20%] left-[10%] group-hover:max-w-lg group-hover:absolute group-hover:w-full" alt="{{ $product->short_name }} Image">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
         @if (session('success'))
             <x-alerts.success :message="session('success')" />
@@ -43,11 +54,14 @@
         </div>
     </div>
 
-    <div class="max-w-3xl m-auto py-12 px-4">
+    <div class="max-w-4xl m-auto py-12 px-4">
         <h3 class="mb-3 text-4xl font-semibold price">Product Description</h3>
         <main class="main-body">
-            <h2>Features</h2>
             {!! $product->body !!}
+            <img src="{{ asset('assets/slides/slide_1.jpg') }}" class="rounded-lg shadow-lg mb-3" alt="Trade Fountain Image">
+            <img src="{{ asset('assets/slides/slide_2.jpg') }}" class="rounded-lg shadow-lg mb-3" alt="Trade Fountain Image">
+            <img src="{{ asset('assets/slides/slide_3.jpg') }}" class="rounded-lg shadow-lg mb-3" alt="Trade Fountain Image">
+            <img src="{{ asset('assets/slides/slide_4.jpg') }}" class="rounded-lg shadow-lg mb-3" alt="Trade Fountain Image">
         </main>
     </div>
 </section>

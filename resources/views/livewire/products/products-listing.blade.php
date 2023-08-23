@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Products') }}
         </h2>
-        <a href="{{ route('products.create') }}" class="py-2 px-4 rounded-md bg-indigo-600 text-white font-semibold">Create Product</a>
+        <a href="{{ route('create.product') }}" class="py-2 px-4 rounded-md bg-indigo-600 text-white font-semibold">Create Product</a>
     </div>
 </x-slot>
 
