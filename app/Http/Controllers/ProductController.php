@@ -29,12 +29,6 @@ class ProductController extends Controller
             'name' => $request->name
         ]);
 
-        $price = $stripe->prices->create([
-            'unit_amount' => $request->price * 100,
-            'currency' => 'EUR',
-            'product' => $product['id'],
-        ]);
-
         Product::create([
             'name' => $request->name,
             'short_name' => $request->short,
@@ -43,7 +37,6 @@ class ProductController extends Controller
             'image' => $request->image->store('product_images', 'public_disk'),
             'description' => $request->description,
             'body' => $request->body,
-            'price_id' => $price['id'],
             'stripe_id' => $product['id']
         ]);
 

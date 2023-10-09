@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('image');
             $table->decimal('price', 10, 2);
             $table->string('stripe_id');
-            $table->string('price_id');
             $table->text('description');
             $table->text('body');
             $table->boolean('is_active')->default(true);

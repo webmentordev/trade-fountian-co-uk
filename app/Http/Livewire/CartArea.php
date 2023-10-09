@@ -133,13 +133,20 @@ class CartArea extends Component
             ]);
 
             foreach($orders as $order){
-                $array[] = [ 'price' => $order->product->price_id, 'quantity' => $order->quantity ];
+                $array[] = [
+                    'price_data' => [
+                            "product" => $order->product->price_id,
+                            "currency" => 'GBP',
+                            "unit_amount" =>  $this->total_price * 100,
+                        ], 
+                    'quantity' => 1 
+                ];
             }
 
             $checkout = $stripe->checkout->sessions->create([
                 'success_url' => config('app.url').'/success/'.$checkout_id,
                 'cancel_url' => config('app.url').'/cancel/'.$checkout_id,
-                'currency' => "EUR",
+                'currency' => "GBP",
                 'billing_address_collection' => 'required',
                 'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
                 'line_items' => $array,
