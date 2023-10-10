@@ -27,8 +27,8 @@
                 <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('home') }}">Home</a></li>
                 <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('home') }}#products">Products</a></li>
                 <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('client') }}">Client Area</a></li>
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('client') }}">Term Of Service</a></li>
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('client') }}">Privacy Policy</a></li>
+                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('terms') }}">Terms Of Service</a></li>
+                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('policy') }}">Privacy Policy</a></li>
             </ul>
         </div>
     </div>

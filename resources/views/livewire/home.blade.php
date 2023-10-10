@@ -45,11 +45,11 @@
 
 <section>
     <div class="max-w-6xl m-auto py-12 px-4 w-full">
-        <div class="grid grid-cols-2 gap-6">
-            <img src="{{ asset('assets/quanlity.jpg') }}" alt="Trade Fountain Napkins">
-            <div class="h-fit px-6 py-4">
-                <h3 class="text-2xl mb-3 font-semibold">Multi Colour Napkins</h3>
-                <p>Our Table Napinks are available in multiple colors. It will</p>
+        <div class="grid grid-cols-2 gap-6 780:grid-cols-1">
+            <img class="rounded-lg" src="{{ asset('assets/quanlity.jpg') }}" title="Multi color cotton napkins set" alt="Trade Fountain Napkins">
+            <div class="h-fit px-6 py-4 410px:px-0">
+                <h3 class="text-3xl mb-3 font-semibold">Multi Colour Napkins</h3>
+                <p class="text-lg">The Multi Color 100% Cotton Napkins offer a vibrant and practical addition to any dining experience. Crafted from high-quality, pure cotton material, these napkins not only provide a soft and luxurious feel but also ensure durability and easy maintenance. The multi-color design adds a visually appealing touch, making them versatile for various occasions, from casual family meals to festive gatherings.</p>
             </div>
         </div>
     </div>

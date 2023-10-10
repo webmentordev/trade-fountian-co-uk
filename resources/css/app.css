@@ -69,3 +69,23 @@ html{
 .main-body h3{
     @apply font-semibold text-2xl mb-2;
 }
+
+.terms h2{
+    @apply mt-6 mb-2 font-semibold text-3xl;
+}
+
+.terms h3{
+    @apply mt-6 mb-2 font-semibold text-xl;
+}
+
+.terms ul {
+    @apply ml-3
+}
+
+.terms ul li{
+    @apply mb-2
+}
+
+.terms p{
+    @apply leading-8;
+}

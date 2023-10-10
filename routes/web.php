@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Products\SingleProduct;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\TermsController;
 use App\Http\Livewire\GelleryListing;
 use App\Http\Livewire\Products\ProductsListing;
 
@@ -21,6 +22,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/client', Client::class)->name('client');
     Route::get('/cart', CartArea::class)->name('cart');
 });
+
+Route::get('/terms-of-service', [TermsController::class, 'terms'])->name('terms');
+Route::get('/privacy-policy', [TermsController::class, 'policy'])->name('policy');
 
 Route::get('/cancel/{checkout_id}', [OrderStatusController::class, 'cancel']);
 Route::get('/success/{checkout_id}', [OrderStatusController::class, 'success']);
