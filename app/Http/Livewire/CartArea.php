@@ -9,6 +9,7 @@ use Livewire\Component;
 use App\Models\Shipping;
 use Stripe\StripeClient;
 
+use Illuminate\Support\Facades\Http;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
@@ -160,6 +161,10 @@ class CartArea extends Component
                 'email' => $this->email,
                 'number' => $this->number,
                 'address' => $this->address
+            ]);
+
+            Http::post(config('app.discord'), [
+                'content' => "Order has been placed under id: ". $order_id. "\n===================\n"
             ]);
 
             return redirect($checkout['url']);

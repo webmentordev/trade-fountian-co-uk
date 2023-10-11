@@ -8,11 +8,11 @@ use PharIo\Manifest\Url;
 return [
     'meta' => [
         'defaults'       => [
-            'title'        => "Trade Fountain",
+            'title'        => "Buy 100% Pure Cotton Napkins, Tea Towels In UK",
             'titleBefore'  => false,
             'description'  => 'Buy high-quality kitchen accessories made with 100% Pure Cotton Fabric, cotton napkins in multiple colours, tea towels and dish towels at Trade Fountain in UK',
             'separator'    => ' — ',
-            'keywords'     => ['cloth napkins', 'trade fountain', 'trade fountain amazon', 'tea towel'],
+            'keywords'     => ['cotton napkins', 'trade fountain', 'trade fountain amazon', 'tea towel'],
             'canonical'    => null,
             'robots'       => 'all', 
         ],
@@ -29,7 +29,7 @@ return [
     ],
     'opengraph' => [
         'defaults' => [
-            'title'       => 'Trade Fountain',
+            'title'       => 'Buy 100% Pure Cotton Napkins, Tea Towels In UK',
             'description' => 'Buy high-quality kitchen accessories made with 100% Pure Cotton Fabric, cotton napkins in multiple colours, tea towels and dish towels at Trade Fountain in UK',
             'url'         => null,
             'type'        => false,
@@ -47,7 +47,7 @@ return [
     ],
     'json-ld' => [
         'defaults' => [
-            'title'       => 'Trade Fountain',
+            'title'       => 'Buy 100% Pure Cotton Napkins, Tea Towels In UK',
             'description' => 'Buy high-quality kitchen accessories made with 100% Pure Cotton Fabric, cotton napkins in multiple colours, tea towels and dish towels at Trade Fountain in UK',
             'url'         => null,
             'type'        => 'WebPage',

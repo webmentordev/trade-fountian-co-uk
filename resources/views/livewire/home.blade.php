@@ -46,11 +46,24 @@
 <section>
     <div class="max-w-6xl m-auto py-12 px-4 w-full">
         <div class="grid grid-cols-2 gap-6 780:grid-cols-1">
-            <img class="rounded-lg" src="{{ asset('assets/quanlity.jpg') }}" title="Multi color cotton napkins set" alt="Trade Fountain Napkins">
+            <img class="rounded-lg w-full" src="{{ asset('assets/quanlity.jpg') }}" title="Multi color cotton napkins set" alt="Trade Fountain Napkins">
             <div class="h-fit px-6 py-4 410px:px-0">
                 <h3 class="text-3xl mb-3 font-semibold">Multi Colour Napkins</h3>
                 <p class="text-lg">The Multi Color 100% Cotton Napkins offer a vibrant and practical addition to any dining experience. Crafted from high-quality, pure cotton material, these napkins not only provide a soft and luxurious feel but also ensure durability and easy maintenance. The multi-color design adds a visually appealing touch, making them versatile for various occasions, from casual family meals to festive gatherings.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<section>
+    <div class="max-w-6xl m-auto py-12 px-4 w-full">
+        <div class="grid grid-cols-2 gap-6 780:grid-cols-1 mb-12">
+            <div class="h-fit pr-6 py-4 410px:px-0 780:order-2">
+                <h3 class="text-3xl mb-3 font-semibold">Multi Purpose Napkins & Towels</h3>
+                <p class="text-lg">Multi Purpose Napkins & Towels are so useful in many situations. They are like magic helpers in the kitchen and around the house. These towels, usually made from strong materials like cotton or microfiber, are great for cleaning up spills, wiping surfaces, or just making things tidy. You can use them during cooking to keep things clean, or put them on the dining table to make it look nice. The best part is how fast they dry things and how absorbent they are. It's like having a friend that's always ready to help with any mess or task</p>
+            </div>
+            <img class="rounded-lg 780:order-1 w-full" src="{{ asset('assets/pure.jpg') }}" title="Multi purpose cotton napkins set" alt="Trade Fountain Napkins">
+        </div>
+        <img class="rounded-lg w-full" src="{{ asset('assets/multi.jpg') }}" title="Multi Purpose Napkins & Towels" alt="Trade Fountain Napkins">
     </div>
 </section>

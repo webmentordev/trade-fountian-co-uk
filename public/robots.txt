@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+allow:
+
+Sitemap: https://tradefountain.co.uk/sitemap.xml

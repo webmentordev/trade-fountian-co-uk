@@ -20,6 +20,8 @@ return [
 
     'stripe' => env('STRIPE', ''),
 
+    'discord' => env('DISCORD', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
