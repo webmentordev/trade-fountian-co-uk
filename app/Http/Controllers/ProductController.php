@@ -25,8 +25,13 @@ class ProductController extends Controller
 
         $stripe = new StripeClient(config('app.stripe'));
 
+        $imageLink = $request->image->store('product_images', 'public_disk');
+
         $product = $stripe->products->create([
-            'name' => $request->name
+            'name' => $request->name,
+            'images' => [
+                config('app.url').'/storage/'.$imageLink
+            ]
         ]);
 
         Product::create([
@@ -34,7 +39,7 @@ class ProductController extends Controller
             'short_name' => $request->short,
             'slug' => str_replace(' ', '-', strtolower($request->short)).'-'.rand(1, 9999999),
             'price' => $request->price,
-            'image' => $request->image->store('product_images', 'public_disk'),
+            'image' => $imageLink,
             'description' => $request->description,
             'body' => $request->body,
             'stripe_id' => $product['id']
