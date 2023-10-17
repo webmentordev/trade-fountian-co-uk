@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Products\SingleProduct;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\TermsController;
 use App\Http\Livewire\GelleryListing;
 use App\Http\Livewire\Products\ProductsListing;
@@ -42,4 +43,7 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
 });
 
 Route::get('/product/{slug}', SingleProduct::class)->name('single.product');
+
+Route::get('sitemap.xml', [SiteMapController::class, 'index']);
+
 require __DIR__.'/auth.php';

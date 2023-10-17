@@ -46,6 +46,4 @@
             <p>If you have any questions about these Terms or the Services, please contact us at <span class="font-semibold text-blue-600 underline">contact@tradefountain.co.uk</span> <br> Thank you for using Trade Fountain!</p>
         </div>
 </section>
-<x-footer />
-
 @endsection

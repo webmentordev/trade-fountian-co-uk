@@ -52,14 +52,6 @@
 
             <h2>9. Contact Information</h2>
             <p>If you have any questions or concerns about this Privacy Policy, please contact us at <span class="font-semibold text-blue-600 underline">contact@tradefountain.co.uk</span><br>Thank you for trusting Trade Fountain with your information!</p>
-
-
-            <h2></h2>
-            <h3></h3>
-            <p></p>
-            
         </div>
 </section>
-<x-footer />
-
 @endsection
