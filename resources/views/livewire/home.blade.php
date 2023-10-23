@@ -1,15 +1,19 @@
-<section class="w-full h-[70vh]">
-    <div class="max-w-[90%] m-auto py-2 px-4 h-full bg-gray-100 flex items-center justify-center">
-        <div class="max-w-[75%] 1260px:max-w-[95%] w-full flex items-center 815px:flex-col justify-between">
-            <div class="970:mb-12">
-                <h1 class="text-[50px] 440px:text-4xl title leading-[60px]"><span class="text-[110px] 970:text-[80px] 440px:text-5xl">Welcome to</span> <br> Trade fountain <span class="text-3xl">.co.uk</span></h1>
-                <p class="text-gray-600 mb-3">100% pure cotton fabric towels & Kitchen Napkins</p>
-                <div class="flex">
-                    <a href="#products" class="py-2 px-5 border border-gray-600 inline-block rounded-full transition-all hover:bg-transparent hover:text-black font-semibold bg-black text-white">Shop Now</a>
-                    <a href="https://www.amazon.co.uk/stores/Trade+Fountain/page/96B0053E-A35A-4B24-A7AF-D325AF739606?ref_=ast_bln" class="py-2 px-5 border border-gray-600 ml-3 rounded-full transition-all hover:bg-black/70 font-semibold bg-black text-white flex items-center"><img src="https://api.iconify.design/mdi:amazon.svg?color=%23ffffff" class="mr-1" title="TradeFountain Amazon Store" width="25px" alt="Amazon"> Amazon</a>
+<section class="w-full h-[70vh] bg-gray-100 splide" id="image-carousel">
+    <div class="splide__track bg-cover bg-center " style="background-image: url({{ asset('assets/26669.png') }})">
+        <div class="splide__list">
+            <div class="py-2 splide__slide px-4 h-full flex items-center justify-center">
+                <div class="max-w-[75%] 1260px:max-w-[95%] 815px:flex-col w-full flex items-center justify-between">
+                    <div class="970:mb-12">
+                        <h1 class="text-[50px] 440px:text-4xl title leading-[60px]"><span class="text-[110px] 970:text-[80px] 440px:text-5xl">Buy 100% Pure</span> <br> Cotton Napkins</h1>
+                        <p class="text-gray-600 mb-3">Now available in UK with 3 Days Delivery</p>
+                        <div class="flex">
+                            <a href="#products" class="py-2 px-5 border border-gray-600 inline-block rounded-full transition-all hover:bg-transparent hover:text-black font-semibold bg-black text-white">Shop Now</a>
+                            <a href="https://www.amazon.co.uk/stores/Trade+Fountain/page/96B0053E-A35A-4B24-A7AF-D325AF739606?ref_=ast_bln" class="py-2 px-5 border border-gray-600 ml-3 rounded-full transition-all hover:bg-black/70 font-semibold bg-black text-white flex items-center"><img src="https://api.iconify.design/mdi:amazon.svg?color=%23ffffff" class="mr-1" title="TradeFountain Amazon Store" width="25px" alt="Amazon"> Amazon</a>
+                        </div>
+                    </div>
+                    <img src="{{ asset('assets/napkin_image.png') }}" class="w-[45%] 815px:w-[60%] 440px:w-[80%]" alt="Trade Fountain Black Napkin Image">
                 </div>
             </div>
-            <img src="{{ asset('assets/napkin_image.png') }}" class="w-[45%] 815px:w-[60%] 440px:w-[80%]" alt="Trade Fountain Black Napkin Image">
         </div>
     </div>
 </section>
@@ -67,3 +71,11 @@
         <img class="rounded-lg w-full" src="{{ asset('assets/multi.jpg') }}" title="Multi Purpose Napkins & Towels" alt="Trade Fountain Napkins">
     </div>
 </section>
+
+<script>
+    document.addEventListener( 'DOMContentLoaded', function () {
+      new Splide( '#image-carousel', {
+		height: '100%',
+  }).mount();
+    } );
+  </script>

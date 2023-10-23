@@ -9,7 +9,12 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+        <script src="
+        https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
+        "></script>
+        <link href="
+        https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+        " rel="stylesheet">
         {!! SEOMeta::generate() !!}
         {!! OpenGraph::generate() !!}
         {!! Twitter::generate() !!}
@@ -27,6 +32,7 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+        
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

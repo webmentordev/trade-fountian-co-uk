@@ -136,11 +136,11 @@ class CartArea extends Component
             foreach($orders as $order){
                 $array[] = [
                     'price_data' => [
-                            "product" => $order->product->price_id,
+                            "product" => $order->product->stripe_id,
                             "currency" => 'GBP',
-                            "unit_amount" =>  $this->total_price * 100,
+                            "unit_amount" =>  $order->total * 100,
                         ], 
-                    'quantity' => 1 
+                    'quantity' => $order->quantity
                 ];
             }
 
