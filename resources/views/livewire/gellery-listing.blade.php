@@ -7,7 +7,7 @@
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-            <form wire:click="create" method="post" enctype="multipart/form-data" class="flex items-end p-6">
+            <form wire:submit="create" enctype="multipart/form-data" class="flex items-end p-6">
                 <div class="w-full mr-3">
                     <x-input-label for="images" :value="__('Multiple Images')" />
                     <x-file id="images" class="block mt-1 w-full" type="file" wire:model="images" accept="images/*" :value="old('images')" multiple required />

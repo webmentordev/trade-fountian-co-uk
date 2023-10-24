@@ -4,7 +4,6 @@
         <h1 class="title text-4xl text-white relative z-10">Product Details / Buy Now</h1>
     </header>
     <div class="max-w-7xl py-12 relative px-4 w-full grid grid-cols-2 gap-12 980px:grid-cols-1 980px:max-w-xl m-auto" x-data="{ images: [
-        '{{ asset('/storage/'. $product->image) }}',
         @if (count($product->images))
             @foreach ($product->images as $item)
                 '{{ asset('/storage/'. $item->url) }}',
