@@ -3,19 +3,24 @@
         <div class="absolute top-0 left-0 h-full w-full bg-black/50 backdrop-blur-sm"></div>
         <h1 class="title text-4xl text-white relative z-10">Product Details / Buy Now</h1>
     </header>
-    <div class="max-w-7xl py-12 relative px-4 w-full grid grid-cols-2 gap-12 980px:grid-cols-1 980px:max-w-xl m-auto">
+    <div class="max-w-7xl py-12 relative px-4 w-full grid grid-cols-2 gap-12 980px:grid-cols-1 980px:max-w-xl m-auto" x-data="{ images: [
+        '{{ asset('/storage/'. $product->image) }}',
+        @if (count($product->images))
+            @foreach ($product->images as $item)
+                '{{ asset('/storage/'. $item->url) }}',
+            @endforeach
+        @endif
+    ], active: null}" x-init="active = images[0]">
         <div class="w-full">
-            <div class="h-[600px] bg-gray-100 flex items-center justify-center">
+            <div class="h-[500px] bg-gray-100 flex items-center justify-center">
                 {{-- bg-{{ rand(1, 8) }} --}}
-                <img src="{{ asset('/storage/'.$product->image) }}" alt="{{ $product->name }} Image" class="w-[70%]">
+                <img :src="active" alt="{{ $product->name }} Image" class="w-[70%] 490px:w-[90%]">
             </div>
             @if (count($product->images))
-                <div class="grid grid-cols-{{ count($product->images) }} gap-3 py-3 w-full">
-                    @foreach ($product->images as $image)
-                        <div class="p-3 border group border-gray-300 rounded-lg cursor-pointer flex items-center justify-center">
-                            <img src="{{ asset('/storage/'. $image->url) }}" class="w-[80%] top-[20%] left-[10%] group-hover:max-w-lg group-hover:absolute group-hover:w-full" alt="{{ $product->short_name }} Image">
-                        </div>
-                    @endforeach
+                <div class="grid grid-cols-6 gap-3 py-3 w-full 490px:grid-cols-3">
+                    <template x-for="image in images">
+                        <img :src="image" width="150px" class="mr-2 rounded-lg h-full object-cover" :class="{ 'border-4 border-blue-300': active == image }" x-on:mouseenter="active = image">
+                    </template>
                 </div>
             @endif
         </div>
