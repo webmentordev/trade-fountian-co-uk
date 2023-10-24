@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->string('stripe_id');
             $table->text('description');
+            $table->text('seo');
             $table->text('body');
             $table->boolean('is_active')->default(true);
             $table->timestamps();

@@ -32,6 +32,18 @@
                         <x-text-input id="price" autocomplete="off" name="price" class="block mt-1 w-full" type="number" step="0.01" required />
                         <x-input-error :messages="$errors->get('price')" class="mt-2" />
                     </div>
+
+                    <div class="w-full">
+                        <x-input-label for="slug" :value="__('Product Slug')" />
+                        <x-text-input id="slug" autocomplete="off" name="slug" class="block mt-1 w-full" type="text" required />
+                        <x-input-error :messages="$errors->get('slug')" class="mt-2" />
+                    </div>
+
+                    <div class="w-full">
+                        <x-input-label for="seo" :value="__('Product SEO')" />
+                        <x-text-input id="seo" autocomplete="off" name="seo" class="block mt-1 w-full" type="text" required />
+                        <x-input-error :messages="$errors->get('seo')" class="mt-2" />
+                    </div>
     
                     <div class="w-full">
                         <x-input-label for="description" :value="__('Product Description')" />

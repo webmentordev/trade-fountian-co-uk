@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Client;
 use App\Http\Livewire\CartArea;
@@ -15,9 +16,8 @@ use App\Http\Livewire\Products\ProductsListing;
 
 Route::get('/', Home::class)->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'is_admin'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+->middleware(['auth', 'verified', 'is_admin'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/client', Client::class)->name('client');
@@ -42,7 +42,7 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::post('/product/create', [ProductController::class, 'store']);
 });
 
-Route::get('/product/{slug}', SingleProduct::class)->name('single.product');
+Route::get('/product/{product:slug}', SingleProduct::class)->name('single.product');
 
 Route::get('sitemap.xml', [SiteMapController::class, 'index']);
 

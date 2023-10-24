@@ -19,38 +19,32 @@ class SingleProduct extends Component
         'quantity' => 'required|numeric|min:1|max:20'
     ];
 
-    public function mount($slug){
-        $result = Product::where('slug', $slug)->where('is_active', true)->first();
-        SEOMeta::setTitle($result->short_name);
+    public function mount(Product $product){
+        SEOMeta::setTitle($product->short_name);
+        SEOMeta::setDescription($product->seo);
         SEOMeta::setRobots("index, follow");
         SEOMeta::addMeta("apple-mobile-web-app-title", "Trade Fountain");
         SEOMeta::addMeta("application-name", "Trade Fountain");
 
 
-        OpenGraph::setTitle($result->short_name);
+        OpenGraph::setTitle($product->short_name);
+        OpenGraph::setDescription($product->seo);
         OpenGraph::addProperty("type", "website");
         OpenGraph::addProperty("locale", "eu");
-        OpenGraph::addImage(config('app.url').'/storage/'.$result->image);
+        OpenGraph::addImage(config('app.url').'/storage/'.$product->image);
 
-        TwitterCard::setTitle($result->short_name);
+        TwitterCard::setTitle($product->short_name);
         TwitterCard::setSite('@tradefountainuk');
-        TwitterCard::setImage(config('app.url').'/storage/'.$result->image);
+        TwitterCard::setImage(config('app.url').'/storage/'.$product->image);
 
-        JsonLd::setTitle($result->short_name);
+        JsonLd::setTitle($product->short_name);
+        JsonLd::setDescription($product->seo);
         JsonLd::setType("WebSite");
-        JsonLd::addImage(config('app.url').'/storage/'.$result->image);
-        
-        if($result){
-            $this->product = $result;
-        }else{
-            abort(404, 'Not Found!');
-        }
+        JsonLd::addImage(config('app.url').'/storage/'.$product->image);
     }
 
     public function render()
     {
-        
-        
         return view('livewire.products.single-product')->layout('layouts.livewire');
     }
 

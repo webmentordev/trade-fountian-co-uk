@@ -93,4 +93,16 @@ html{
 .splide__slide {
     width: 100%;
     height: auto;
-  }
+}
+
+.orders tr th{
+    @apply text-start text-sm;
+}
+
+.orders tr td{
+    @apply text-start text-sm;
+}
+
+.orders tr .last{
+    @apply text-end;
+}

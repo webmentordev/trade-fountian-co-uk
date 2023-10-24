@@ -23,4 +23,8 @@ class Cart extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+
+    public function address(){
+        return $this->hasOne(Shipping::class, 'order_id', 'order_id');
+    }
 }

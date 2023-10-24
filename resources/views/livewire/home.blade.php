@@ -1,4 +1,4 @@
-<section class="w-full min-h-[700px] bg-gray-100 splide" id="image-carousel">
+<section class="w-full min-h-[700px] bg-gray-100 splide py-[30px]" id="image-carousel">
     <div class="splide__track bg-cover bg-center " style="background-image: url({{ asset('assets/26669.png') }})">
         <div class="splide__list min-h-[700px] flex items-center">
             <div class="py-2 splide__slide px-4 h-full flex items-center justify-center">
@@ -17,7 +17,7 @@
             <div class="py-2 splide__slide px-4 h-full flex items-center justify-center">
                 <div class="max-w-[900px] 1260px:max-w-[95%] 815px:flex-col w-full flex items-center justify-between">
                     <div class="970:mb-12">
-                        <h1 class="text-8xl 555:text-4xl title leading-[70px] 870px:text-6xl">Buy 100% Pure <br> <span class="text-6xl">Cotton Napkins</span></h1>
+                        <h1 class="text-8xl 555:text-4xl title leading-[70px] 870px:text-6xl">100% Pure <br> <span class="text-6xl">Tea Towels</span></h1>
                         <p class="text-gray-600 mb-3">Now available in UK with 3 Days Delivery</p>
                         <div class="flex">
                             <a href="#products" class="py-2 px-5 border border-gray-600 inline-block rounded-full transition-all hover:bg-transparent hover:text-black font-semibold bg-black text-white">Shop Now</a>
