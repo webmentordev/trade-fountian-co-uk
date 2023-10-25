@@ -86,10 +86,12 @@
 </section>
 
 <script>
-    document.addEventListener( 'DOMContentLoaded', function () {
-      new Splide( '#image-carousel', {
-            autoStart: true,
-            rewind: true
-        }).mount();
-    } );
-  </script>
+    var splide = new Splide('.splide', {
+        type   : 'loop',
+        autoplay: true,
+        interval: 3000,
+        arrows: true,
+        pagination: false
+    });
+    splide.mount();
+</script>

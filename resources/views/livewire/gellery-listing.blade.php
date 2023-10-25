@@ -43,10 +43,10 @@
                             <td class="p-2 text-start"><a href="{{ asset('/storage/'.$item->url) }}" target="_blank"><img data-src="{{ asset('/storage/'.$item->url) }}" class="lazyload" loading="lazy" width="60"></a></td>
                             <td class="text-start">{{ $item->product->short_name }}</td>
                             <td class="text-end p-2">
-                                @if ($product->is_active)
-                                    <span wire:click="updateStatus({{ $product->id }}, false)" class="bg-green-600/10 cursor-pointer rounded-full border-green-600 border p-1 font-semibold px-4 text-green-600">Active</span>
-                                @else
-                                    <span wire:click="updateStatus({{ $product->id }}, true)" class="bg-red-600/10 cursor-pointer rounded-full border-red-600 border p-1 font-semibold px-4 text-red-600">InActive</span>
+                                @if ($item->is_active == true)
+                                    <span wire:click="updateStatus({{ $item->id }}, false)" class="bg-green-600/10 cursor-pointer rounded-full border-green-600 border p-1 font-semibold px-4 text-green-600">Active</span>
+                                @elseif($item->is_active == false)
+                                    <span wire:click="updateStatus({{ $item->id }}, true)" class="bg-red-600/10 cursor-pointer rounded-full border-red-600 border p-1 font-semibold px-4 text-red-600">InActive</span>
                                 @endif
                             </td>
                             <td class="p-2 text-end">{{ $item->created_at->format('D d-M-Y H:i:s A') }}</td>

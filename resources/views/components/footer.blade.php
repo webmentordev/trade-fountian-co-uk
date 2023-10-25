@@ -3,8 +3,8 @@
         <div class="w-full">
             <h3 class="mb-6 text-2xl title">Get In Touch</h3>
             <ul class="font-semibold text-gray-500">
-                <li class="mb-1"><b class="text-black">Address:</b> L6T 2K5, Brampton, ON, Canada, Ontario</li>
-                <li class="mb-1"><b class="text-black">Call:</b> <span class="ml-2">+1 (647) 616-5799</span></li>
+                <li class="mb-1"><b class="text-black">Address:</b> 1500 MMR House 57 Cheetham Hill Road, Manchester, M4 4FS, United Kingdom</li>
+                <li class="mb-1"><b class="text-black">Call:</b> <span class="ml-2">+44 (748) 1355474</span></li>
                 <li class="mb-1"><b class="text-black">Contact:</b> <span class="ml-1">contact@tradefountain.co.uk</span></li>
                 <li class="mb-1"><b class="text-black">Open:</b> <span class="ml-1">Monday - Friday, 8:00AM to 6:00PM</span></li>
             </ul>
