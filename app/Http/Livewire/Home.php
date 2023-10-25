@@ -13,7 +13,8 @@ class Home extends Component
     public function render()
     {
         return view('livewire.home', [
-            'products' => Product::latest()->where('is_active', true)->paginate(20)
+            'napkins' => Product::latest()->where('is_active', true)->where('name', 'LIKE', '%napkin%')->limit(3)->get(),
+            'towels' => Product::latest()->where('is_active', true)->where('name', 'LIKE', '%towel%')->limit(3)->get()
         ]);
     }
 }
