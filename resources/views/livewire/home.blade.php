@@ -35,7 +35,23 @@
 @if (count($reviews))
     <section class="w-full">
         <div class="max-w-6xl m-auto py-12 px-4 w-full">
-            <div class="grid grid-cols-2 gap-6">
+            <div class="m-auto w-fit">
+                <div class="flex items-center justify-center">
+                    <span class="font-semibold text-7xl price">4.7</span>
+                    <div class="flex flex-col ml-2">
+                        <ul class="flex">
+                            <li><img width="25px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
+                            <li><img width="25px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
+                            <li><img width="25px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
+                            <li><img width="25px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
+                            <li><img width="25px" src="https://api.iconify.design/material-symbols:star-half.svg?color=%23FFA41C" alt="Review star"></li>
+                        </ul>
+                        <p class="text-gray-500">from <b>1500+</b> customers</p>
+                    </div>
+                </div>
+                <h2 class="text-3xl mb-4 title">What our amazon customers think</h2>
+            </div>
+            <div class="grid grid-cols-2 gap-6 border-t border-gray-100 py-6 780:grid-cols-1">
                 @foreach ($reviews as $review)
                     <x-review :review="$review" />
                 @endforeach
