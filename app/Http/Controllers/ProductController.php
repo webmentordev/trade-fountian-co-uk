@@ -6,6 +6,12 @@ use App\Models\Product;
 use Stripe\StripeClient;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\TwitterCard;
+
 class ProductController extends Controller
 {
     public function index(){
@@ -49,5 +55,30 @@ class ProductController extends Controller
         ]);
 
         return back()->with('success', 'Product has been created!');
+    }
+
+
+    public function show(){
+        SEOMeta::setTitle("Trade Fountain Products Listing");
+        SEOMeta::setDescription("List of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "Trade Fountain");
+        SEOMeta::addMeta("application-name", "Trade Fountain");
+
+
+        OpenGraph::setTitle("Trade Fountain Products Listing");
+        OpenGraph::setDescription("List of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+
+        TwitterCard::setTitle("Trade Fountain Products Listing");
+        TwitterCard::setSite('@tradefountainuk');
+
+        JsonLd::setTitle("Trade Fountain Products Listing");
+        JsonLd::setDescription("List of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
+        JsonLd::setType("WebSite");
+        return view('products', [
+            'products' => Product::latest()->get()
+        ]);
     }
 }

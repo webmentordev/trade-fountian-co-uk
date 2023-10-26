@@ -32,6 +32,17 @@
 </section>
 
 <x-about />
+@if (count($reviews))
+    <section class="w-full">
+        <div class="max-w-6xl m-auto py-12 px-4 w-full">
+            <div class="grid grid-cols-2 gap-6">
+                @foreach ($reviews as $review)
+                    <x-review :review="$review" />
+                @endforeach
+            </div>
+        </div>
+    </section>
+@endif
 
 <section class="w-full">
     <div class="max-w-6xl m-auto py-12 px-4 w-full" id="products">

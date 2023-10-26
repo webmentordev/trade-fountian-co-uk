@@ -5,7 +5,7 @@
         </a>
         <ul class="font-semibold 940:hidden">
             <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('home') }}">Home</a>
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('home') }}#products">Products</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('products') }}">Products</a>
             <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('cart') }}">Cart</a>
         </ul>
         
@@ -36,7 +36,7 @@
             <img x-on:click="open = !open" src="https://api.iconify.design/fluent:text-align-right-16-filled.svg?color=%231f1e1e" alt="Align Icon" width="25">
             <ul class="absolute w-[200px] text-start right-1 top-10 rounded-lg bg-black text-white flex flex-col bg-dark p-6 link" x-show="open" x-transition x-cloak>
                 <a class="pb-3 border-b border-white/10" href="{{ route('home') }}">Home</a>
-                <a class="py-3 border-b border-white/10" href="{{ route('home') }}#products">Products</a>
+                <a class="py-3 border-b border-white/10" href="{{ route('products') }}">Products</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('cart') }}">Cart</a>
                 @auth
                     @if (auth()->user()->is_admin)
