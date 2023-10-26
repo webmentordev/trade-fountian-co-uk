@@ -16,6 +16,7 @@ class Review extends Model
         'date',
         'color',
         'review',
+        'star',
         'url'
     ];
 }

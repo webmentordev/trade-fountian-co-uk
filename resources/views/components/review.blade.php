@@ -1,5 +1,5 @@
 @props(['review'])
-<div class="flex flex-col h-fit w-full p-6 bg-white shadow-xl border border-gray-200 rounded-xl">
+<div class="flex flex-col h-fit w-full p-6 bg-white transition-all hover:shadow-xl border border-gray-200 rounded-xl">
     <div class="flex items-center mb-1">
         <div class="w-[30px] h-[30px] rounded-full bg-center bg-cover" style="background-image: url('https://images-eu.ssl-images-amazon.com/images/S/amazon-avatars-global/default._CR0,0,1024,1024_SX48_.png')"></div>
         <span class="ml-3 text-sm text-slate-600">{{ $review->name }}</span>
@@ -10,7 +10,11 @@
             <li><img width="20px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
             <li><img width="20px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
             <li><img width="20px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
-            <li><img width="20px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
+            @if ($review->star > 4.5)
+                <li><img width="20px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
+            @else
+                <li><img width="20px" src="https://api.iconify.design/material-symbols:star-half.svg?color=%23FFA41C" alt="Review star"></li>
+            @endif
         </ul>
         <p class="text-[15px] ml-2 mt-1"><b>{{ $review->title }}</b></p>
     </div>

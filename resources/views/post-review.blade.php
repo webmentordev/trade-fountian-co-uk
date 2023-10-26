@@ -39,10 +39,16 @@
                         <x-input-error :messages="$errors->get('date')" class="mt-2" />
                     </div>
 
-                    <div class="w-full col-span-2">
+                    <div class="w-full">
                         <x-input-label for="color" :value="__('Color')" />
                         <x-text-input id="color" autocomplete="off" name="color" class="block mt-1 w-full" type="text" required />
                         <x-input-error :messages="$errors->get('color')" class="mt-2" />
+                    </div>
+
+                    <div class="w-full">
+                        <x-input-label for="star" :value="__('Stars')" />
+                        <x-text-input id="star" autocomplete="off" name="star" class="block mt-1 w-full" type="number" step="0.1" required />
+                        <x-input-error :messages="$errors->get('star')" class="mt-2" />
                     </div>
 
                     <div class="w-full col-span-2">

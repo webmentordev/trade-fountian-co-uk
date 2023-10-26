@@ -25,6 +25,7 @@ class ReviewController extends Controller
             'date' => 'required|max:255',
             'color' => 'required|max:255',
             'review' => 'required',
+            'star' => 'required|numeric|min:4|max:5',
             'url' => 'required|url',
         ]);
 
@@ -35,6 +36,7 @@ class ReviewController extends Controller
             'date' => $request->date,
             'color' => $request->color,
             'review' => $request->review,
+            'star' => $request->star,
             'url' => $request->url
         ]);
 

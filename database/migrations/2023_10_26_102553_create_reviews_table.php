@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('date');
             $table->string('color');
             $table->text('review');
+            $table->decimal('star', 10, 1);
             $table->text('url');
             $table->timestamps();
         });
