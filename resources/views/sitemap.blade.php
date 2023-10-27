@@ -14,6 +14,13 @@
     </url>
 
     <url>
+        <loc>https://tradefountain.co.uk/products</loc>
+        <lastmod>2023-10-26T05:05:00+05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
         <loc>https://tradefountain.co.uk/terms-of-service</loc>
         <lastmod>2023-10-16T05:05:00+05:00</lastmod>
         <changefreq>weekly</changefreq>

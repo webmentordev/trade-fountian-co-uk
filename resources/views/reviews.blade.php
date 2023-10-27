@@ -19,6 +19,7 @@
                         <th class="p-2 text-start">Date</th>
                         <th class="p-2 text-start">Color</th>
                         <th class="p-2 text-start">Url</th>
+                        <th class="p-2 text-start">Update</th>
                     </tr>
                     @foreach ($reviews as $item)
                         <tr class="text-sm odd:bg-gray-100">
@@ -28,6 +29,7 @@
                             <td class="p-2 text-start">{{ $item->date }}</td>
                             <td class="p-2 text-start">{{ $item->color }}</td>
                             <td class="p-2 text-start"><a href="{{ $item->url }}" target="_blank" class="text-start underline text-blue-600">Visit</a></td>
+                            <td class="p-2 text-start"><a href="{{ route('review.update', $item->id) }}" class="text-start underline text-blue-600">Update</a></td>
                         </tr>
                     @endforeach
                 </table>

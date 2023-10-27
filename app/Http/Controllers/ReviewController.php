@@ -42,4 +42,39 @@ class ReviewController extends Controller
 
         return back()->with('success', 'Review has been posted');
     }
+
+
+    public function update(Review $review){
+        return view('update-review', [
+            'review' => $review
+        ]);
+    }
+
+    public function review_update(Request $request, Review $review){
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'title' => 'required|max:255',
+            'location' => 'nullable|max:255',
+            'date' => 'required|max:255',
+            'color' => 'required|max:255',
+            'review' => 'required',
+            'star' => 'required|numeric|min:4|max:5',
+            'url' => 'required|url',
+        ]);
+
+        $review->update([
+            'name' => $request->name,
+            'title' => $request->title,
+            'location' => $request->location,
+            'date' => $request->date,
+            'color' => $request->color,
+            'review' => $request->review,
+            'star' => $request->star,
+            'url' => $request->url
+        ]);
+
+        $review->save();
+        
+        return back()->with('success', 'Review has been updated!');
+    }
 }
