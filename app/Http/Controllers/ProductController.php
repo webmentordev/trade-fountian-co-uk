@@ -82,4 +82,46 @@ class ProductController extends Controller
             'products' => Product::latest()->where('is_active', true)->get()
         ]);
     }
+
+
+    public function update(Product $product){
+        return view('update-product', [
+            'product' => $product
+        ]);
+    }
+
+    public function update_product(Request $request, Product $product){
+        $this->validate($request, [
+            'name' => 'required|max:255|unique:products',
+            'short' => 'required|max:255|unique:products,short_name',
+            'slug' => 'required|max:255',
+            'seo' => 'required',
+            'price' => 'required|numeric|min:1',
+            'description' => 'required|max:500',
+            'body' => 'required',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,webp'
+        ]);
+
+        $imageLink = null;
+        
+        if($request->image->hasFile()){
+            $imageLink = $request->image->store('product_images', 'public_disk');
+        }
+
+        $array = [
+            'name' => $request->name,
+            'short_name' => $request->short,
+            'slug' => $request->slug,
+            'price' => $request->price,
+            'image' => $imageLink,
+            'description' => $request->description,
+            'seo' => $request->seo,
+            'body' => $request->body
+        ];
+        
+        $product->update($array);
+        $product->save();
+        
+        return back()->with('success', 'Product has been updated!');
+    }
 }

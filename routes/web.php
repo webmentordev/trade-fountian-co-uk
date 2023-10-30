@@ -43,6 +43,9 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/product/create', [ProductController::class, 'index'])->name('create.product');
     Route::post('/product/create', [ProductController::class, 'store']);
 
+    Route::get('/product/update/{product:id}', [ProductController::class, 'update'])->name('product.update');
+    Route::patch('/product/update/{product:id}', [ProductController::class, 'update_product'])->name('update.product');
+
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
     Route::get('/create/review', [ReviewController::class, 'create'])->name('create.review');
     Route::post('/post/review', [ReviewController::class, 'store'])->name('post.review');

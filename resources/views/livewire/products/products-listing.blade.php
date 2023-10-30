@@ -18,9 +18,10 @@
                                 <th class="text-start p-2">Image</th>
                                 <th class="text-start p-2">Name</th>
                                 <th class="text-start p-2">Price</th>
-                                <th class="text-end  p-2">Status</th>
-                                <th class="text-end  p-2">Created</th>
-                                <th class="text-end  p-2">LastUpdated</th>
+                                <th class="text-end">Status</th>
+                                <th class="text-end">Created</th>
+                                <th class="text-end">LastUpdated</th>
+                                <th class="text-end p-2">Edit</th>
                             </tr>
                             @foreach ($products as $product)
                                 <tr class="odd:bg-gray-100">
@@ -36,6 +37,7 @@
                                     </td>
                                     <td class="text-end p-2">{{ $product->created_at->diffForHumans() }}</td>
                                     <td class="text-end p-2">{{ $product->updated_at->diffForHumans() }}</td>
+                                    <td class="text-end p-2"><a href="{{ route('product.update',$product->id) }}" class="underline text-blue-600">Edit</a></td>
                                 </tr>
                             @endforeach
                         </table>
