@@ -77,8 +77,9 @@ class ProductController extends Controller
         JsonLd::setTitle("Trade Fountain Products Listing");
         JsonLd::setDescription("List of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
         JsonLd::setType("WebSite");
+        
         return view('products', [
-            'products' => Product::latest()->get()
+            'products' => Product::latest()->where('is_active', true)->get()
         ]);
     }
 }

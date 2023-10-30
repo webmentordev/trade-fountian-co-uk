@@ -20,7 +20,8 @@ class Product extends Model
         'stripe_id',
         'description',
         'body',
-        'is_active'
+        'is_active',
+        'is_featured'
     ];
 
     public function images(){

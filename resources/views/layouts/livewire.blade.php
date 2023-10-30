@@ -33,6 +33,7 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+        <a href="https://wa.me/447481355474" class="fixed z-50 bottom-3 right-3"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="50" alt="Whatsapp Icon"></a>
         @livewire('navbar')
         {{ $slot }}
         <x-service />

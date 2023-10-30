@@ -32,9 +32,9 @@
         <div class="w-full flex flex-col py-6">
             <h2 class="font-semibold text-3xl mb-6">{{ $product->name }}</h2>
             @if ($quantity && $quantity > 0)
-                <span class="text-red-500 text-4xl font-semibold price mb-3">€{{ $product->price * $quantity }}</span>
+                <span class="text-red-500 text-4xl font-semibold price mb-3">£{{ $product->price * $quantity }}</span>
             @else
-                <span class="text-red-500 text-4xl font-semibold price mb-3">€{{ $product->price }}</span>
+                <span class="text-red-500 text-4xl font-semibold price mb-3">£{{ $product->price }}</span>
             @endif
             <h3 class="mb-2 text-3xl title">About This Item</h3>
             {!! $product->description !!}

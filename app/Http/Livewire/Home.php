@@ -14,8 +14,8 @@ class Home extends Component
     public function render()
     {
         return view('livewire.home', [
-            'napkins' => Product::latest()->where('is_active', true)->where('name', 'LIKE', '%napkin%')->limit(3)->get(),
-            'towels' => Product::latest()->where('is_active', true)->where('name', 'LIKE', '%towel%')->limit(3)->get(),
+            'napkins' => Product::latest()->where('is_active', true)->where('name', 'LIKE', '%napkin%')->where("is_featured", true)->limit(3)->get(),
+            'towels' => Product::latest()->where('is_active', true)->where('name', 'LIKE', '%towel%')->where("is_featured", true)->limit(3)->get(),
             'reviews' => Review::latest()->limit(4)->get(),
         ]);
     }
