@@ -4,7 +4,7 @@
         <div class="max-w-6xl m-auto py-12 px-4 w-full" id="products">
             <div class="text-center mb-4">
                 <h2 class="text-5xl title mb-2">Trade Fountain products</h2>
-                <p>Here is the listing of all our products that wehave to offer</p>
+                <p>Here is the listing products that we have to offer. We offer organic Napkins and Tea Towels</p>
             </div>
             @if (count($products))
                 <div class="grid grid-cols-3 gap-6 970:grid-cols-3 785px:grid-cols-2 460px:grid-cols-1">

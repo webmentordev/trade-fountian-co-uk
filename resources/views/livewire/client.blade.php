@@ -44,16 +44,16 @@
                                     @elseif ($order->status == 'cancelled')
                                     <span class="py-2 mr-2 flex items-center px-4 rounded-xl bg-red-400/20 text-black"><i class="h-[10px] w-[10px] rounded-full bg-red-400 mr-2"></i> Cancelled</span>
                                 @endif
-                                <h4 class="text-3xl ml-3 font-semibold price">€{{ number_format($order->product->price * $order->quantity, 2) }}</h4>
+                                <h4 class="text-3xl ml-3 font-semibold price">£{{ number_format($order->product->price * $order->quantity, 2) }}</h4>
                             </div>
                         </div>
                     </div>
                 @endforeach
                 <div class="bg-black mb-3 overflow-hidden shadow-sm rounded-lg">
                     <div class="p-6 text-white flex items-center justify-between 810px:flex-col">
-                        <h3 class="text-2xl font-semibold">Total Paid: <i class="font-normal text-gray-100">€{{ $completed }}</i></h3>
-                        <h3 class="text-2xl font-semibold">Total Pending: <i class="font-normal text-gray-100">€{{ $pending }}</i></h3>
-                        <h3 class="text-2xl font-semibold">Total Cancelled: <i class="font-normal text-gray-100">€{{ $cancelled }}</i></h3>
+                        <h3 class="text-2xl font-semibold">Total Paid: <i class="font-normal text-gray-100">£{{ $completed }}</i></h3>
+                        <h3 class="text-2xl font-semibold">Total Pending: <i class="font-normal text-gray-100">£{{ $pending }}</i></h3>
+                        <h3 class="text-2xl font-semibold">Total Cancelled: <i class="font-normal text-gray-100">£{{ $cancelled }}</i></h3>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@
             <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('home') }}">Home</a>
             <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('products') }}">Products</a>
             <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('cart') }}">Cart</a>
+            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('about') }}">About</a>
         </ul>
         
         <div class="flex items-center 940:hidden">
@@ -38,6 +39,7 @@
                 <a class="pb-3 border-b border-white/10" href="{{ route('home') }}">Home</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('products') }}">Products</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('cart') }}">Cart</a>
+                <a class="py-3 border-b border-white/10" href="{{ route('about') }}">About</a>
                 @auth
                     @if (auth()->user()->is_admin)
                         <a class="py-3 border-b border-white/10" href="{{ route('dashboard') }}">Dashboard</a>

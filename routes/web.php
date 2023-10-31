@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Client;
 use App\Http\Livewire\CartArea;
@@ -17,6 +18,8 @@ use App\Http\Livewire\Products\ProductsListing;
 
 Route::get('/', Home::class)->name('home');
 Route::get('/products', [ProductController::class, 'show'])->name('products');
+
+Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
 ->middleware(['auth', 'verified', 'is_admin'])->name('dashboard');
