@@ -18,6 +18,7 @@ use App\Http\Livewire\Products\ProductsListing;
 
 Route::get('/', Home::class)->name('home');
 Route::get('/products', [ProductController::class, 'show'])->name('products');
+Route::get('/products/search', [ProductController::class, 'search'])->name('search');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 

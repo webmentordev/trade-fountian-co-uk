@@ -6,6 +6,17 @@
                 <h2 class="text-5xl title mb-2">Trade Fountain products</h2>
                 <p>Here is the listing products that we have to offer. We offer organic Napkins and Tea Towels</p>
             </div>
+            <form action="{{ route('search') }}" method="get" class="flex items-center mb-4">
+                <x-text-input id="search" class="block mt-1 w-full"
+                            type="search"
+                            name="search"
+                            placeholder="Search by product name..."
+                            autocomplete="off"
+                            required />
+                <x-primary-button class="ml-3 py-[10.5px]">
+                    {{ __('Search') }}
+                </x-primary-button>
+            </form>
             @if (count($products))
                 <div class="grid grid-cols-3 gap-6 970:grid-cols-3 785px:grid-cols-2 460px:grid-cols-1">
                     @foreach ($products as $product)
@@ -24,6 +35,8 @@
                         </a>
                     @endforeach
                 </div>
+            @else
+                <p class="py-6 text-center text-4xl">No product(s) found!</p>
             @endif
         </div>
     </section>

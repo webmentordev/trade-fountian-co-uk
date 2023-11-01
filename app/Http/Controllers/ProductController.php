@@ -84,6 +84,36 @@ class ProductController extends Controller
     }
 
 
+    public function search(Request $request){
+        $this->validate($request, [
+            'search' => 'required'
+        ]);
+        
+        SEOMeta::setTitle("Search Trade Fountain Products");
+        SEOMeta::setDescription("Search of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
+        SEOMeta::setRobots("index, follow");
+        SEOMeta::addMeta("apple-mobile-web-app-title", "Trade Fountain");
+        SEOMeta::addMeta("application-name", "Trade Fountain");
+
+
+        OpenGraph::setTitle("Search Trade Fountain Products");
+        OpenGraph::setDescription("Search of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
+        OpenGraph::addProperty("type", "website");
+        OpenGraph::addProperty("locale", "eu");
+
+        TwitterCard::setTitle("Search Trade Fountain Products");
+        TwitterCard::setSite('@tradefountainuk');
+
+        JsonLd::setTitle("Search Trade Fountain Products");
+        JsonLd::setDescription("Search of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
+
+        JsonLd::setType("WebSite");
+        return view('products', [
+            'products' => Product::latest()->where('is_active', true)->where('name', "LIKE", '%'.$request->search.'%')->get()
+        ]);
+    }
+
+
     public function update(Product $product){
         return view('update-product', [
             'product' => $product

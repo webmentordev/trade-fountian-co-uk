@@ -34,6 +34,13 @@
         <priority>0.80</priority>
     </url>
 
+    <url>
+        <loc>https://tradefountain.co.uk/about</loc>
+        <lastmod>2023-10-31T05:05:00+05:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.80</priority>
+    </url>
+
 
     @foreach ($products as $product)
         <url>
