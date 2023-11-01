@@ -88,7 +88,7 @@ class ProductController extends Controller
         $this->validate($request, [
             'search' => 'required'
         ]);
-        
+
         SEOMeta::setTitle("Search Trade Fountain Products");
         SEOMeta::setDescription("Search of all Trade fountain's multicoloured and multi purposed napkins and tea towerds in UK");
         SEOMeta::setRobots("index, follow");
@@ -122,8 +122,8 @@ class ProductController extends Controller
 
     public function update_product(Request $request, Product $product){
         $this->validate($request, [
-            'name' => 'required|max:255|unique:products',
-            'short' => 'required|max:255|unique:products,short_name',
+            'name' => 'required|max:255',
+            'short' => 'required|max:255',
             'slug' => 'required|max:255',
             'seo' => 'required',
             'price' => 'required|numeric|min:1',
@@ -134,10 +134,17 @@ class ProductController extends Controller
 
         $imageLink = null;
         
-        if($request->image->hasFile()){
+        if($request->hasFile('image')){
             $imageLink = $request->image->store('product_images', 'public_disk');
         }
 
+        if($request->name != $product->name){
+            $stripe = new StripeClient(config('app.stripe'));
+            $stripe->products->update(
+                $product->stripe_id,
+                ['name' => $request->name]
+            );
+        }
         $array = [
             'name' => $request->name,
             'short_name' => $request->short,
