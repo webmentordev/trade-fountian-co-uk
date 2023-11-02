@@ -31,11 +31,14 @@
         </div>
         <div class="w-full flex flex-col py-6">
             <h2 class="font-semibold text-3xl mb-6">{{ $product->name }}</h2>
-            @if ($quantity && $quantity > 0)
+            <div class="flex items-center">
+                @if ($quantity && $quantity > 0)
                 <span class="text-red-500 text-4xl font-semibold price mb-3">£{{ $product->price * $quantity }}</span>
-            @else
-                <span class="text-red-500 text-4xl font-semibold price mb-3">£{{ $product->price }}</span>
-            @endif
+                @else
+                    <span class="text-red-500 text-4xl font-semibold price mb-3">£{{ $product->price }}</span>
+                @endif
+                <p class="ml-2">(Free Next Day Shipping all over UK)</p>
+            </div>
             <h3 class="mb-2 text-3xl title">About This Item</h3>
             {!! $product->description !!}
             <div class="flex items-center mt-6 490px:flex-col">

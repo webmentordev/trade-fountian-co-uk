@@ -156,7 +156,7 @@ class ProductController extends Controller
             'body' => $request->body
         ];
         
-        $product->update($array);
+        $product->update(array_filter($array));
         $product->save();
         
         return back()->with('success', 'Product has been updated!');

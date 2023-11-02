@@ -3,11 +3,20 @@
         <a href="{{ route('home') }}">
             <img src="{{ asset('assets/logo.png') }}" width="200" alt="Trade Fountain Logo">
         </a>
-        <ul class="font-semibold 940:hidden">
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('home') }}">Home</a>
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('products') }}">Products</a>
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('cart') }}">Cart</a>
-            <a class="mx-4 py-1 hover:text-orange-400 transition-all" href="{{ route('about') }}">About</a>
+        <ul class="font-semibold 940:hidden flex py-1">
+            <a class="mx-4 hover:text-orange-400 transition-all" href="{{ route('home') }}">Home</a>
+            <div class="mx-4 relative" x-data="{ open: false }">
+                <span class="cursor-pointer flex items-center" x-on:click="open = !open">Products <img class="ml-1" src="https://api.iconify.design/tabler:caret-down-filled.svg?color=%23232423" alt=""></span>
+                <div class="absolute top-6 right-0 shadow-lg bg-white rounded-lg w-[120px] p-4" x-show="open" x-cloak x-transition>
+                    <ul class="flex flex-col">
+                        <a href="{{ route('search', 'search=napkin') }}" class="py-2 border-b border-gray-100 hover:text-orange-400 transition-all">Napkins</a>
+                        <a href="{{ route('search', 'search=towel') }}" class="py-2 border-b border-gray-100 hover:text-orange-400 transition-all">Towels</a>
+                        <a href="{{ route('products') }}" class="pt-2 hover:text-orange-400 transition-all">All</a>
+                    </ul>
+                </div>
+            </div>
+            <a class="mx-4 hover:text-orange-400 transition-all" href="{{ route('cart') }}">Cart</a>
+            <a class="mx-4 hover:text-orange-400 transition-all" href="{{ route('about') }}">About</a>
         </ul>
         
         <div class="flex items-center 940:hidden">

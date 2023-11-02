@@ -3,6 +3,11 @@
         <div class="splide__list min-h-[700px] flex items-center">
             <div class="py-2 splide__slide px-4 h-full flex items-center justify-center">
                 <div class="max-w-[1000px] 1260px:max-w-[95%] 815px:flex-col w-full flex items-center justify-between">
+                    <img src="{{ asset('assets/free_shipping.png') }}" class="w-full" alt="Trade Fountain Black Napkin Image">
+                </div>
+            </div>
+            <div class="py-2 splide__slide px-4 h-full flex items-center justify-center">
+                <div class="max-w-[1000px] 1260px:max-w-[95%] 815px:flex-col w-full flex items-center justify-between">
                     <div class="970:mb-12">
                         <h1 class="text-8xl 555:text-4xl title leading-[70px] 870px:text-6xl">Buy 100% Pure <br> <span class="text-6xl">Cotton Napkins</span></h1>
                         <p class="text-gray-600 mb-3">Now available in UK with Next Day Delivery</p>

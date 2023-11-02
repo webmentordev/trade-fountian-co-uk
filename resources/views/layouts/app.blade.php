@@ -33,7 +33,12 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <a href="https://wa.me/447481355474" class="fixed z-50 bottom-3 right-3"><img src="https://api.iconify.design/logos:whatsapp-icon.svg?color=%23ffd402" width="50" alt="Whatsapp Icon"></a>
+        <div class="fixed z-50 bottom-3 right-3">
+            <a href="https://wa.me/447481355474" class="flex items-center flex-col">
+                <img src="{{ asset('assets/whatsapp_logo.png') }}" width="50" class="mb-2 500:mb-0" alt="Whatsapp Icon">
+                <span class="font-semibold 500:hidden">Instant Support</span>
+            </a>
+        </div>
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
