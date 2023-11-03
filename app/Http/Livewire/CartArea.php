@@ -14,10 +14,11 @@ use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
+use Illuminate\Http\Request;
 
 class CartArea extends Component
 {
-    public $name, $email, $address, $number;
+    public $name, $email, $address, $number, $products;
 
     protected $rules = [
         'name' => 'required',
@@ -42,11 +43,9 @@ class CartArea extends Component
         TwitterCard::setSite('@tradefountainuk');
         JsonLd::setTitle("Cart");
         JsonLd::setType("WebSite");
+        $this->products = session()->get('cart');
 
-        return view('livewire.cart-area', [
-            'orders' => Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->get(),
-            'total' => Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->sum('total')
-        ]);
+        return view('livewire.cart-area');
     }
 
     public function increment($slug){

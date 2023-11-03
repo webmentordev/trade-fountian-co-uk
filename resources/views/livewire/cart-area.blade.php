@@ -15,8 +15,8 @@
                 <b class="text-lg">Product</b>
                 <b class="text-lg">Price</b>
             </div>
-            @if (count($orders))
-                @foreach ($orders as $order)
+            @if (count($products))
+                @foreach ($products as $order)
                     <div class="even:bg-orange-100/50 mb-3 flex justify-between 555:flex-col items-center even:border-y even:border-b even:border-orange-100">
                         <div class="text-start px-3 py-4 flex items-center">
                             <img src="{{ asset('/storage/'. $order->product->image) }}" width="40" alt="{{ $order->product->name }} Image">

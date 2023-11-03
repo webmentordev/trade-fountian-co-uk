@@ -8,8 +8,10 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Illuminate\Support\Facades\Cookie;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
+use Illuminate\Http\Request;
 
 class SingleProduct extends Component
 {
@@ -53,29 +55,14 @@ class SingleProduct extends Component
     }
 
     public function add_to_cart(){
-        $result = Cart::where('product_id', $this->product->id)->where('status', 'pending')->first();
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
-        if($result){
-            if(($result->quantity + $this->quantity) <= 20){
-                $new_Quantity = $result->quantity + $this->quantity;
-                $result->total = $new_Quantity * $this->product->price;
-                $result->quantity = $new_Quantity;
-                $result->save();
-                session()->flash('success', 'Product has been added to the cart!');
-            }else{
-                $this->addError('quantity', 'Product cart size exceeded!');
-                return;
-            }
-        }else{
-            Cart::create([
-                'user_id' => auth()->user()->id,
-                'product_id' => $this->product->id,
-                'quantity' => $this->quantity,
-                'total' => $this->product->price * $this->quantity
-            ]);
-            session()->flash('success', 'Product has been added to the cart!');
-        }
+        $cartItems = session()->get('cart');
+        $cartItems[$this->product->slug] = [
+            'quantity' => $this->quantity,
+            'price' => $this->product->price,
+            'name' => $this->product->name,
+            'image' => config('app.url').'/storage/'.$this->product->image,
+        ];
+        session()->put('cart', $cartItems);
+        session()->flash('success', 'Product has been added to the cart!');
     }
 }

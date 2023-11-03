@@ -11,22 +11,10 @@
         </div>
 
         <div class="w-full">
-            <h3 class="mb-6 text-2xl title">My Account</h3>
-            <ul class="text-gray-500">
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('cart') }}">My Cart</a></li>
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('client') }}">My Order</a></li>
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('login') }}">Login</a></li>
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('register') }}">Register</a></li>
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('password.request') }}">Forgot Password</a></li>
-            </ul>
-        </div>
-
-        <div class="w-full">
             <h3 class="mb-6 text-2xl title">Information</h3>
             <ul class="text-gray-500">
                 <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('home') }}">Home</a></li>
                 <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('home') }}#products">Products</a></li>
-                <li class="mb-1 hover:ml-3 transition-all"><a href="{{ route('client') }}">Client Area</a></li>
                 <li class="mb-1 hover:ml-3 transition-all"><a rel="nofollow" href="{{ route('terms') }}">Terms Of Service</a></li>
                 <li class="mb-1 hover:ml-3 transition-all"><a rel="nofollow" href="{{ route('policy') }}">Privacy Policy</a></li>
             </ul>

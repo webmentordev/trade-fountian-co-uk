@@ -25,10 +25,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/dashboard', [DashboardController::class, 'index'])
 ->middleware(['auth', 'verified', 'is_admin'])->name('dashboard');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/client', Client::class)->name('client');
-    Route::get('/cart', CartArea::class)->name('cart');
-});
+Route::get('/cart', CartArea::class)->name('cart');
 
 Route::get('/terms-of-service', [TermsController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [TermsController::class, 'policy'])->name('policy');
