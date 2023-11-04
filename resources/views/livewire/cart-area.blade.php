@@ -3,7 +3,7 @@
         <div class="w-full col-span-2">
             <div class="flex items-center pb-6 justify-between">
                 <h2 class="text-4xl price font-bold">Shopping Cart.</h2>
-                @if (count($orders))
+                @if (count($products))
                     <button wire:click="empty_cart" class="flex items-center font-semibold bg-orange-600/10 py-1 px-3 rounded-sm text-orange-600">
                         <img src="https://api.iconify.design/ri:delete-bin-5-line.svg?color=%23e85617" class="mr-2" alt="Recycle Bin">
                         Empty
@@ -16,20 +16,20 @@
                 <b class="text-lg">Price</b>
             </div>
             @if (count($products))
-                @foreach ($products as $order)
+                @foreach ($products as $key => $order)
                     <div class="even:bg-orange-100/50 mb-3 flex justify-between 555:flex-col items-center even:border-y even:border-b even:border-orange-100">
                         <div class="text-start px-3 py-4 flex items-center">
-                            <img src="{{ asset('/storage/'. $order->product->image) }}" width="40" alt="{{ $order->product->name }} Image">
-                            <a href="{{ route('single.product', $order->product->slug) }}" class="ml-2 underline text-gray-500">{{ $order->product->short_name }}</a>
-                            <b class="ml-1">(<span class="text-orange-600">x{{ $order->quantity }}</span>)</b>
+                            <img src="{{ asset($order['image']) }}" width="40" alt="{{ $order['name'] }} Image">
+                            <a href="{{ route('single.product', $order['slug']) }}" class="ml-2 underline text-gray-500">{{ $order['short'] }}</a>
+                            <b class="ml-1">(<span class="text-orange-600">x{{ $order['quantity'] }}</span>)</b>
                             <div class="flex justify-center items-center ml-2">
-                                <button class="py-2 mr-1 px-2 rounded-full bg-orange-600/10" wire:click="decrement('{{ $order->product->slug }}')"><img src="https://api.iconify.design/ic:baseline-minus.svg?color=%23e85617" alt="Bin Icon"></button>
-                                <button class="py-2 px-2 rounded-full bg-orange-600/10" wire:click="increment('{{ $order->product->slug }}')"><img src="https://api.iconify.design/material-symbols:add.svg?color=%23e85617" alt="Bin Icon"></button>
+                                <button class="py-2 mr-1 px-2 rounded-full bg-orange-600/10" wire:click="decrement('{{ $order['slug'] }}')"><img src="https://api.iconify.design/ic:baseline-minus.svg?color=%23e85617" alt="Bin Icon"></button>
+                                <button class="py-2 px-2 rounded-full bg-orange-600/10" wire:click="increment('{{ $order['slug'] }}')"><img src="https://api.iconify.design/material-symbols:add.svg?color=%23e85617" alt="Bin Icon"></button>
                             </div>
                         </div>
                         <div class="flex items-center px-3">
-                            <div class="text-end price">${{ $order->total }}</div>
-                            <button class="py-2 px-2 ml-2 rounded-full bg-orange-600/10" wire:click="remove('{{ $order->product->slug }}')"><img src="https://api.iconify.design/solar:trash-bin-minimalistic-bold.svg?color=%23e85617" alt="Bin Icon"></button>
+                            <div class="text-end price">${{ $order['price'] * $order['quantity'] }}</div>
+                            <button class="py-2 px-2 ml-2 rounded-full bg-orange-600/10" wire:click="remove('{{ $key }}')"><img src="https://api.iconify.design/solar:trash-bin-minimalistic-bold.svg?color=%23e85617" alt="Bin Icon"></button>
                         </div>
                     </div>
                 @endforeach
@@ -43,7 +43,7 @@
             
         </div>
 
-        <div class="w-full bg-gray-100 rounded-lg p-6 1140:col-span-2">
+        <div class="w-full bg-gray-100 rounded-lg p-6 1140:col-span-2 h-fit">
             <h2 class="price text-3xl font-bold mb-4">Payment Info</h2>
             <form wire:submit.prevent='checkout' method="post">
                 <div class="w-full mb-3">
@@ -70,12 +70,14 @@
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                 </div>
     
-                <ul class="bg-white mb-3 rounded-lg">
-                    <li class="flex justify-between py-2 px-3"><b>Shipping</b><span class="text-gray-500">$0.00</span></li>
-                    <li class="flex justify-between py-2 px-3"><b>Tax</b><span class="text-gray-500">$0.00</span></li>
-                    <li class="flex items-center justify-between py-2 px-3"><b>Subtotal (pay)</b><span class="text-xl font-bold price text-orange-500">${{ number_format($total, 2) }}</span></li>
-                </ul>
-                @if (count($orders))
+                @if (count($products))
+                    <ul class="bg-white mb-3 rounded-lg">
+                        <li class="flex justify-between py-2 px-3"><b>Shipping</b><span class="text-gray-500">$0.00</span></li>
+                        <li class="flex justify-between py-2 px-3"><b>Tax</b><span class="text-gray-500">$0.00</span></li>
+                        <li class="flex items-center justify-between py-2 px-3"><b>Subtotal (pay)</b><span class="text-xl font-bold price text-orange-500">${{ number_format($total_price, 2) }}</span></li>
+                    </ul>
+                @endif
+                @if (count($products))
                     <x-primary-button class="mb-3">
                         {{ __('Checkout') }}
                     </x-primary-button>

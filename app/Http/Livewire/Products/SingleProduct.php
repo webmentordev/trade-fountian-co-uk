@@ -56,13 +56,19 @@ class SingleProduct extends Component
 
     public function add_to_cart(){
         $cartItems = session()->get('cart');
-        $cartItems[$this->product->slug] = [
-            'quantity' => $this->quantity,
-            'price' => $this->product->price,
-            'name' => $this->product->name,
-            'image' => config('app.url').'/storage/'.$this->product->image,
-        ];
-        session()->put('cart', $cartItems);
-        session()->flash('success', 'Product has been added to the cart!');
+        if($this->quantity <= 20){
+            $cartItems[$this->product->slug] = [
+                'slug' => $this->product->slug,
+                'quantity' => $this->quantity,
+                'price' => $this->product->price,
+                'name' => $this->product->name,
+                'short' => $this->product->short_name,
+                'image' => config('app.url').'/storage/'.$this->product->image
+            ];
+            session()->put('cart', $cartItems);
+            session()->flash('success', 'Product has been added to the cart!');
+        }else{
+            $this->addError('quantity', 'Quantity has exceeded for the product!');
+        }
     }
 }

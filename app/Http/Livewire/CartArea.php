@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 
 class CartArea extends Component
 {
-    public $name, $email, $address, $number, $products;
+    public $name, $email, $address, $number, $products, $total_price = 0;
 
     protected $rules = [
         'name' => 'required',
@@ -43,57 +43,30 @@ class CartArea extends Component
         TwitterCard::setSite('@tradefountainuk');
         JsonLd::setTitle("Cart");
         JsonLd::setType("WebSite");
-        $this->products = session()->get('cart');
+
+        
+        $products = session()->get('cart');
+        if($products != null){
+            $this->products = $products;
+            $this->total_price = 0;
+            foreach($products as $product){
+                $this->total_price += ($product['price'] * $product['quantity']);
+            }
+        }else{
+            $this->products = [];
+        }
 
         return view('livewire.cart-area');
     }
 
-    public function increment($slug){
-        $result = Product::where('slug', $slug)->first();
-        if($result){
-            $order = Cart::where('product_id', $result->id)->where('user_id', auth()->user()->id)->where('status', 'pending')->first();
-            if($order->quantity < 20){
-                $new_quantity = $order->quantity + 1;
-                $order->quantity = $new_quantity;
-                $order->total = $new_quantity * $result->price;
-                $order->save();
-            }else{
-                $this->addError('quantity', 'Quantity has exceeded for the product!');
-            }
-        }else{
-            abort(404, 'Not Found!');
-        }
+    public function remove($index){
+        unset($this->products[$index]);
+        $this->products = array_values($this->products);
+        session()->put('cart', $this->products);
     }
-
-    public function decrement($slug){
-        $result = Product::where('slug', $slug)->first();
-        if($result){
-            $order = Cart::where('product_id', $result->id)->where('user_id', auth()->user()->id)->where('status', 'pending')->first();
-            if($order->quantity > 0){
-                $new_quantity = $order->quantity - 1;
-                $order->quantity = $new_quantity;
-                $order->total = $new_quantity * $result->price;
-                $order->save();
-            }else{
-                $this->addError('quantity', 'Quantity has to be One or more!');
-            }
-        }else{
-            abort(404, 'Not Found!');
-        }
-    }
-
-
-    public function remove($slug){
-        $product = Product::where('slug', $slug)->first();
-        if($product){
-            Cart::where('product_id', $product->id)->delete();
-        }else{
-            abort(404, 'Not Found!');
-        }
-    }
-
+    
     public function empty_cart(){
-        Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->delete();
+        session(['cart' => []]);
     }
 
     public function randomStringGenerator() {
@@ -116,6 +89,22 @@ class CartArea extends Component
             $pass[] = $alphabet[$n];
         }
         return implode($pass);
+    }
+
+    public function increment($slug){
+        $quantity = $this->products[$slug]['quantity'];
+        if($quantity >= 1 && $quantity <= 20){
+            $this->products[$slug]['quantity'] = $quantity + 1;
+            session()->put('cart', $this->products);
+        }
+    }
+
+    public function decrement($slug){
+        $quantity = $this->products[$slug]['quantity'];
+        if($quantity >= 1 && $quantity <= 20){
+            $this->products[$slug]['quantity'] = $quantity - 1;
+            session()->put('cart', $this->products);
+        }
     }
 
     public function checkout(){
