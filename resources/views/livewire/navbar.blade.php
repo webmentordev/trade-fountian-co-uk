@@ -27,6 +27,9 @@
                     @endif
                 @endauth
             </ul>
+            
+            <a class="pr-5 py-1 font-semibold hover:text-orange-400 transition-all border-r border-gray-100" href="{{ route('order.track') }}">Tracking</a>
+            
             <a href="{{ route('cart') }}" class="p-2 ml-3 bg-gray-100 rounded-full flex items-center cursor-pointer">
                 <img src="https://api.iconify.design/mingcute:shopping-bag-2-fill.svg?color=%232f322f" alt="Cart Icon" width="25">
                 <span class="h-fit w-fit font-semibold text-[10px] rounded-full bg-black p-[5px] px-[10px] text-white">{{ $products_count }}</span>
@@ -45,8 +48,9 @@
                 <a class="py-3 border-b border-white/10" href="{{ route('products') }}">Products</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('search', 'search=napkin') }}">Napkins</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('search', 'search=towel') }}">Towels</a>
-                <a class="py-3 border-b border-white/10" href="{{ route('cart') }}">Cart</a>
+                <a class="py-3 border-b border-white/10" href="{{ route('cart') }}">Cart <span class="h-fit w-fit font-semibold text-[10px] rounded-full bg-white p-[5px] px-[10px] text-black">{{ $products_count }}</span></a>
                 <a class="py-3 border-b border-white/10" href="{{ route('about') }}">About</a>
+                <a class="py-3 border-b border-white/10" href="{{ route('order.track') }}">Tracking</a>
                 @auth
                     @if (auth()->user()->is_admin)
                         <a class="py-3 border-b border-white/10" href="{{ route('dashboard') }}">Dashboard</a>

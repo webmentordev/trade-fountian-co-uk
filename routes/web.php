@@ -14,6 +14,7 @@ use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Products\SingleProduct;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\TrackController;
 use App\Http\Livewire\Products\ProductsListing;
 
 Route::get('/', Home::class)->name('home');
@@ -22,12 +23,13 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('sear
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-
-
 Route::get('/cart', CartArea::class)->name('cart');
 
 Route::get('/terms-of-service', [TermsController::class, 'terms'])->name('terms');
 Route::get('/privacy-policy', [TermsController::class, 'policy'])->name('policy');
+
+Route::get('/track-order', [TrackController::class, 'index'])->name('order.track');
+Route::get('/tracking/order', [TrackController::class, 'show'])->name('track.order');
 
 Route::get('/cancel/{checkout_id}', [OrderStatusController::class, 'cancel']);
 Route::get('/success/{checkout_id}', [OrderStatusController::class, 'success']);
