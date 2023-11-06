@@ -1,7 +1,10 @@
-<section class="w-full min-h-screen">
+<section class="w-full min-h-[60vh]">
     <div class="max-w-7xl m-auto py-12 px-4 grid grid-cols-3 gap-12 1140:grid-cols-2 1140:max-w-3xl">
         <div class="w-full col-span-2">
             <div class="flex items-center pb-6 justify-between">
+                <div wire:loading wire:target='checkout'>
+                    <x-alerts.loading message="Processing..." />
+                </div>
                 <h2 class="text-4xl price font-bold">Shopping Cart.</h2>
                 @if (count($products))
                     <button wire:click="empty_cart" class="flex items-center font-semibold bg-orange-600/10 py-1 px-3 rounded-sm text-orange-600">
@@ -34,7 +37,7 @@
                     </div>
                 @endforeach
             @else
-                <p class="mb-4 p-6 rounded-lg text-orange-600 bg-orange-600/20">No product exist in the cart! Check our collection <a href="{{ route('home') }}#products" class="underline font-semibold">products</a></p>
+                <p class="mb-4 p-6 rounded-lg text-orange-600 bg-orange-600/20">No product exist in the cart! Check our collection <a href="{{ route('products') }}" class="underline font-semibold">products</a></p>
             @endif
             <div class="p-6 rounded-lg bg-gray-900 text-white">
                 <img class="w-[140px] mb-4" src="{{ asset('assets/stripe.png') }}" alt="Stripe Logo">

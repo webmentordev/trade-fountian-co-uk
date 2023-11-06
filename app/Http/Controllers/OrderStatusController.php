@@ -10,9 +10,10 @@ class OrderStatusController extends Controller
 {
     public function cancel($cart){
         $results = Cart::where('checkout_id', $cart)->get();
+        
         foreach ($results as $item) {
             if ($item->status == 'pending') {
-                $item->update(['status' => 'cancelled']);
+                $item->update(['status' => 'cancelled', 'shipping' => 'cancelled']);
             } else {
                 abort(500, 'Internal Server Error!');
             }

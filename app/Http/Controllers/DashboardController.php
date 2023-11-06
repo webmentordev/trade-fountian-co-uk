@@ -12,4 +12,13 @@ class DashboardController extends Controller
             'orders' => Cart::latest()->paginate(100)
         ]);
     }
+
+    public function update(Request $request, Cart $cart){
+        $this->validate($request, [
+            'status' => 'required'
+        ]);
+        $cart->shipping = $request->status;
+        $cart->save();
+        return back();
+    }
 }

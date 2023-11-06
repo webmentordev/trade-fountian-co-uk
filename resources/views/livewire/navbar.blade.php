@@ -29,6 +29,7 @@
             </ul>
             <a href="{{ route('cart') }}" class="p-2 ml-3 bg-gray-100 rounded-full flex items-center cursor-pointer">
                 <img src="https://api.iconify.design/mingcute:shopping-bag-2-fill.svg?color=%232f322f" alt="Cart Icon" width="25">
+                <span class="h-fit w-fit font-semibold text-[10px] rounded-full bg-black p-[5px] px-[10px] text-white">{{ $products_count }}</span>
             </a>
             @auth
                 <form action="{{ route('logout') }}" method="post">

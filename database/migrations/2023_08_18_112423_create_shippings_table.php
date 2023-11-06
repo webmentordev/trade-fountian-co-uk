@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
             $table->string('order_id');
-            $table->foreignId('user_id');
             $table->string('name');
             $table->string('email');
             $table->string('number');

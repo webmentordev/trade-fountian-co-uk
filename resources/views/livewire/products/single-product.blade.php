@@ -1,7 +1,7 @@
 <section class="w-full">
     <header class="py-12 px-4 w-full h-[200px] flex items-center relative justify-center bg-center bg-cover" style="background-image: url({{ asset('assets/header-image.jpg') }})">
         <div class="absolute top-0 left-0 h-full w-full bg-black/50 backdrop-blur-sm"></div>
-        <h1 class="title text-4xl text-white relative z-10">Product Details / Buy Now</h1>
+        <h1 class="title text-4xl text-white relative z-10">{{ $product->short_name }}</h1>
     </header>
     <div class="max-w-7xl py-12 relative px-4 w-full grid grid-cols-2 gap-12 980px:grid-cols-1 980px:max-w-xl m-auto" x-data="{ images: [
         @if (count($product->images))

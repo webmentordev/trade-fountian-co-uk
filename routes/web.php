@@ -22,8 +22,7 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('sear
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-->middleware(['auth', 'verified', 'is_admin'])->name('dashboard');
+
 
 Route::get('/cart', CartArea::class)->name('cart');
 
@@ -34,6 +33,9 @@ Route::get('/cancel/{checkout_id}', [OrderStatusController::class, 'cancel']);
 Route::get('/success/{checkout_id}', [OrderStatusController::class, 'success']);
 
 Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::patch('/cart/update/{cart:order_id}', [DashboardController::class, 'update'])->name('update.shipping');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

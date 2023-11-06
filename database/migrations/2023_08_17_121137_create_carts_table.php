@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('total', 10, 2);
             $table->text('checkout_id')->nullable();
             $table->string('status')->default('pending');
+            $table->string('shipping')->default('processing');
             $table->timestamps();
         });
     }

@@ -63,10 +63,12 @@ class CartArea extends Component
         unset($this->products[$index]);
         $this->products = array_values($this->products);
         session()->put('cart', $this->products);
+        $this->emit('recheck');
     }
     
     public function empty_cart(){
         session(['cart' => []]);
+        $this->emit('recheck');
     }
 
     public function randomStringGenerator() {
@@ -93,7 +95,8 @@ class CartArea extends Component
 
     public function increment($slug){
         $quantity = $this->products[$slug]['quantity'];
-        if($quantity >= 1 && $quantity <= 20){
+        $new_quantity = $quantity + 1;
+        if($new_quantity <= 20){
             $this->products[$slug]['quantity'] = $quantity + 1;
             session()->put('cart', $this->products);
         }
@@ -101,34 +104,36 @@ class CartArea extends Component
 
     public function decrement($slug){
         $quantity = $this->products[$slug]['quantity'];
-        if($quantity >= 1 && $quantity <= 20){
-            $this->products[$slug]['quantity'] = $quantity - 1;
+        $new_quantity = $quantity - 1;
+        if($new_quantity != 0){
+            $this->products[$slug]['quantity'] = $new_quantity;
             session()->put('cart', $this->products);
         }
     }
 
     public function checkout(){
         $this->validate();
-        $orders = Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->get();
-
-        if(count($orders) > 0){
+        if(count($this->products)){
             $stripe = new StripeClient(config('app.stripe'));
-
             $order_id = $this->randomStringGenerator();
             $checkout_id = $this->randomCheckoutGenerator();
-            Cart::where('user_id', auth()->user()->id)->where('status', 'pending')->update([
-                'order_id' => $order_id,
-                'checkout_id' => $checkout_id
-            ]);
 
-            foreach($orders as $order){
+            foreach($this->products as $order){
+                $product = Product::where('slug', $order['slug'])->first();
+                Cart::create([
+                    'product_id' => $product->id,
+                    'order_id' => $order_id,
+                    'quantity' => $order['quantity'],
+                    'total' => $product->price * $order['quantity'],
+                    'checkout_id' => $checkout_id
+                ]);
                 $array[] = [
                     'price_data' => [
-                            "product" => $order->product->stripe_id,
+                            "product" => $product->stripe_id,
                             "currency" => 'GBP',
-                            "unit_amount" =>  $order->total * 100,
-                        ], 
-                    'quantity' => $order->quantity
+                            "unit_amount" =>  $product->price * 100,
+                        ],
+                    'quantity' => $order['quantity']
                 ];
             }
 
@@ -144,7 +149,6 @@ class CartArea extends Component
 
             Shipping::create([
                 'name' => $this->name,
-                'user_id' => auth()->user()->id,
                 'order_id' => $order_id,
                 'email' => $this->email,
                 'number' => $this->number,
@@ -154,7 +158,7 @@ class CartArea extends Component
             Http::post(config('app.discord'), [
                 'content' => "Order has been placed under id: ". $order_id. "\n===================\n"
             ]);
-
+            session(['cart' => []]);
             return redirect($checkout['url']);
         }else{
             abort(500, 'Not Found!');
