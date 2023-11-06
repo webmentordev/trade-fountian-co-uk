@@ -16,7 +16,8 @@ class Cart extends Model
         'quantity',
         'total',
         'checkout_id',
-        'status'
+        'status',
+        'shipping'
     ];
 
     public function product(){

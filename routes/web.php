@@ -16,6 +16,8 @@ use App\Http\Livewire\Products\SingleProduct;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\TrackController;
 use App\Http\Livewire\Products\ProductsListing;
+use App\Mail\Order;
+use App\Models\Cart;
 
 Route::get('/', Home::class)->name('home');
 Route::get('/products', [ProductController::class, 'show'])->name('products');
@@ -62,5 +64,9 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
 Route::get('/product/{product:slug}', SingleProduct::class)->name('single.product');
 
 Route::get('sitemap.xml', [SiteMapController::class, 'index']);
+
+Route::get('send', function(){
+    return new Order('DJnlEKjehRKUI1SEUOAU', Cart::get());
+});
 
 require __DIR__.'/auth.php';

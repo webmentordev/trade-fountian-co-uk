@@ -11,8 +11,10 @@ class Navbar extends Component
 
 
     public function mount(){
-        $products = session()->get('cart');
-        $this->products_count = count($products);
+        if(session()->get('cart')){
+            $products = session()->get('cart');
+            $this->products_count = count($products);
+        }
     }
 
     public function render()
