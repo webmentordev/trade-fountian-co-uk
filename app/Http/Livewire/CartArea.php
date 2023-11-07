@@ -72,7 +72,7 @@ class CartArea extends Component
     }
 
     public function randomStringGenerator() {
-        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array();
         $alphaLength = strlen($alphabet) - 1;
         for ($i = 0; $i < 20; $i++) {
