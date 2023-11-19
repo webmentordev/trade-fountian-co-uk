@@ -12,7 +12,7 @@
                         <h1 class="text-8xl 555:text-4xl title leading-[70px] 870px:text-6xl">Buy 100% Pure <br> <span class="text-6xl">Cotton Napkins</span></h1>
                         <p class="text-gray-600 mb-3">Now available in UK with Next Day Delivery</p>
                         <div class="flex">
-                            <a href="#products" class="py-2 px-5 border border-gray-600 inline-block rounded-full transition-all hover:bg-transparent hover:text-black font-semibold bg-black text-white">Shop Now</a>
+                            <a href="{{ route('search', 'search=napkin') }}" class="py-2 px-5 border border-gray-600 inline-block rounded-full transition-all hover:bg-transparent hover:text-black font-semibold bg-black text-white">Shop Now</a>
                             <a rel="nofollow" href="https://www.amazon.co.uk/stores/Trade+Fountain/page/96B0053E-A35A-4B24-A7AF-D325AF739606?ref_=ast_bln" class="py-2 px-5 border border-gray-600 ml-3 rounded-full transition-all hover:bg-black/70 font-semibold bg-black text-white flex items-center"><img src="https://api.iconify.design/mdi:amazon.svg?color=%23ffffff" class="mr-1" title="TradeFountain Amazon Store" width="25px" alt="Amazon"> Amazon</a>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                         <h1 class="text-8xl 555:text-4xl title leading-[70px] 870px:text-6xl">100% Pure <br> <span class="text-6xl">Tea Towels</span></h1>
                         <p class="text-gray-600 mb-3">Now available in UK with Next Day Delivery</p>
                         <div class="flex">
-                            <a href="#products" class="py-2 px-5 border border-gray-600 inline-block rounded-full transition-all hover:bg-transparent hover:text-black font-semibold bg-black text-white">Shop Now</a>
+                            <a href="{{ route('search', 'search=towel') }}" class="py-2 px-5 border border-gray-600 inline-block rounded-full transition-all hover:bg-transparent hover:text-black font-semibold bg-black text-white">Shop Now</a>
                             <a href="https://www.amazon.co.uk/stores/Trade+Fountain/page/96B0053E-A35A-4B24-A7AF-D325AF739606?ref_=ast_bln" class="py-2 px-5 border border-gray-600 ml-3 rounded-full transition-all hover:bg-black/70 font-semibold bg-black text-white flex items-center" rel="nofollow"><img src="https://api.iconify.design/mdi:amazon.svg?color=%23ffffff" class="mr-1" title="TradeFountain Amazon Store" width="25px" alt="Amazon"> Amazon</a>
                         </div>
                     </div>

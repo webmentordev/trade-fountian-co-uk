@@ -15,6 +15,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Product</th>
+                            <th>Total</th>
                             <th>Quantity</th>
                             <th>Status</th>
                             <th>Shipping</th>
@@ -26,6 +27,7 @@
                                 <td>{{ $order->address->name }}</td>
                                 <td>{{ $order->address->email }}</td>
                                 <td>{{ $order->product->short_name }}</td>
+                                <td>{{ $order->total }}</td>
                                 <td>x{{ $order->quantity }}</td>
                                 <td class="capitalize">
                                     @if ($order->status == "completed")
