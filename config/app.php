@@ -22,6 +22,8 @@ return [
 
     'discord' => env('DISCORD', ''),
 
+    'email' => env('EMAIL', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

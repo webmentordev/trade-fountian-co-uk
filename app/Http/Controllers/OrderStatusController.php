@@ -36,6 +36,7 @@ class OrderStatusController extends Controller
             }
         }
         Mail::to($results[0]->address->email)->send(new Order($results[0]->order_id, $results));
+        Mail::to(config('app.email'))->send(new Order($results[0]->order_id, $results));
         Http::post(config('app.discord'), [
             'content' => "Order id: ". $item->order_id. " has been completed\n===================\n\n"
         ]);

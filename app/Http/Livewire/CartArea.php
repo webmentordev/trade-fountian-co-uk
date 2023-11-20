@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\Shipping;
+use App\Rules\UKPhoneNumber;
 use Stripe\StripeClient;
 
 use Illuminate\Support\Facades\Http;
@@ -18,14 +19,20 @@ use Illuminate\Http\Request;
 
 class CartArea extends Component
 {
-    public $name, $email, $address, $number, $products, $total_price = 0;
+    public $name, $email, $address, $address_2 = "", $county = "", $city = "", $postal = "", $number, $products, $total_price = 0;
 
-    protected $rules = [
-        'name' => 'required',
-        'email' => 'required|email',
-        'address' => 'required',
-        'number' => 'required|numeric',
-    ];
+    public function rules()
+    {
+        return [
+            'name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'number' => ['required', new UKPhoneNumber],
+            'city' => 'required|string',
+            'county' => 'required|string',
+            'postal' => 'required|string',
+        ];
+    }
 
     public function render()
     {
@@ -152,7 +159,7 @@ class CartArea extends Component
                 'order_id' => $order_id,
                 'email' => $this->email,
                 'number' => $this->number,
-                'address' => $this->address
+                'address' => $this->address. ' '.$this->address_2. ', '.$this->city. ', '.$this->county. ', '.$this->postal
             ]);
 
             Http::post(config('app.discord'), [

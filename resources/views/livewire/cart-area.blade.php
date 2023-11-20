@@ -60,17 +60,43 @@
                     <x-text-input id="name" wire:model="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required />
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
-    
+
                 <div class="w-full mb-3">
                     <x-input-label for="number" :value="__('Contact Number (shipping purpose)')" />
-                    <x-text-input id="number" wire:model="number" class="block mt-1 w-full" type="number" name="number" :value="old('number')" required />
+                    <x-text-input id="number" wire:model="number" class="block mt-1 w-full" type="text" name="number" :value="old('number')" placeholder="+44 123 1234567" required />
                     <x-input-error :messages="$errors->get('number')" class="mt-2" />
                 </div>
     
                 <div class="w-full mb-3">
-                    <x-input-label for="address" :value="__('Shipping Address')" />
+                    <x-input-label for="address" :value="__('Address')" />
                     <x-text-input id="address" wire:model="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                </div>
+
+                <div class="w-full mb-3">
+                    <x-input-label for="address_2" :value="__('Address (optional)')" />
+                    <x-text-input id="address_2" wire:model="address_2" class="block mt-1 w-full" type="text" name="address" :value="old('address_2')" required />
+                    <x-input-error :messages="$errors->get('address_2')" class="mt-2" />
+                </div>
+
+                <div class="w-full mb-3">
+                    <x-input-label for="city" :value="__('City')" />
+                    <x-text-input id="city" wire:model="city" class="block mt-1 w-full" type="text" name="address" :value="old('city')" required />
+                    <x-input-error :messages="$errors->get('city')" class="mt-2" />
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="w-full mb-3">
+                        <x-input-label for="county" :value="__('County')" />
+                        <x-text-input id="county" wire:model="county" class="block mt-1 w-full" type="text" name="address" :value="old('county')" required />
+                        <x-input-error :messages="$errors->get('county')" class="mt-2" />
+                    </div>
+    
+                    <div class="w-full mb-3">
+                        <x-input-label for="postal" :value="__('Postal Code')" />
+                        <x-text-input id="postal" wire:model="postal" class="block mt-1 w-full" type="text" name="address" :value="old('postal')" required />
+                        <x-input-error :messages="$errors->get('postal')" class="mt-2" />
+                    </div>
                 </div>
     
                 @if (count($products))
