@@ -38,7 +38,7 @@ Route::get('/success/{checkout_id}', [OrderStatusController::class, 'success']);
 
 Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::patch('/cart/update/{cart:order_id}', [DashboardController::class, 'update'])->name('update.shipping');
+    Route::patch('/cart/update/{order_id}', [DashboardController::class, 'update'])->name('update.shipping');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -13,12 +13,11 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function update(Request $request, Cart $cart){
+    public function update(Request $request, $cart){
         $this->validate($request, [
             'status' => 'required'
         ]);
-        $cart->shipping = $request->status;
-        $cart->save();
+        $cart = Cart::where('order_id', $cart)->update(['shipping' => $request->status]);
         return back();
     }
 }
