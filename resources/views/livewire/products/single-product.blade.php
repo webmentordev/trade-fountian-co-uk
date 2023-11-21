@@ -60,6 +60,29 @@
             </div>
         </div>
     </div>
+    
+    @if (count($products))
+        <div class="max-w-6xl m-auto py-6 px-4">
+            <h3 class="mb-3 text-4xl font-semibold price">Similar Products</h3>
+            <div class="grid grid-cols-3 gap-6 970:grid-cols-3 785px:grid-cols-2 460px:grid-cols-1">
+                @foreach ($products as $product_item)
+                    <a href="{{ route('single.product', $product_item->slug) }}" class="w-full flex flex-col group">
+                        <div class="flex items-center justify-center bg-gray-100 h-[400px] mb-3">
+                            {{-- bg-{{ rand(1, 8) }} --}}
+                            <img data-src="{{ asset('/storage/'. $product_item->image) }}" class="w-[70%] 460px:w-[50%] lazyload" title="{{ $product_item->name }}" alt="{{ $product_item->name }} Image">
+                        </div>
+                        <h3>{{ $product_item->short_name }}</h3>
+                        <span class="price font-semibold text-gray-500 transition-all">£{{ $product_item->price }} GBP</span>
+                        <div class="py-3 items-center px-4 mt-3 bg-black rounded-lg text-white transition-all">
+                            <div class="flex items-center justify-center">
+                                <img src="https://api.iconify.design/material-symbols:expand-circle-right.svg?color=%23fff" class="mr-2" alt="Cart Icon" width="23"> Buy Now
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endif
 
     <div class="max-w-4xl m-auto py-12 px-4">
         <h3 class="mb-3 text-4xl font-semibold price">Product Description</h3>

@@ -51,7 +51,7 @@
                             <li><img width="25px" src="https://api.iconify.design/material-symbols:star.svg?color=%23FFA41C" alt="Review star"></li>
                             <li><img width="25px" src="https://api.iconify.design/material-symbols:star-half.svg?color=%23FFA41C" alt="Review star"></li>
                         </ul>
-                        <p class="text-gray-500">from <b>1500+</b> customers</p>
+                        <p class="text-gray-500">from <b>1500+</b> Happy Customers</p>
                     </div>
                 </div>
                 <h2 class="text-3xl mb-4 title">What our amazon customers think</h2>

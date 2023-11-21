@@ -9,8 +9,8 @@
                 <span class="cursor-pointer flex items-center" x-on:click="open = !open">Products <img class="ml-1" src="https://api.iconify.design/tabler:caret-down-filled.svg?color=%23232423" alt=""></span>
                 <div class="absolute top-6 right-0 shadow-lg bg-white rounded-lg w-[120px] p-4" x-show="open" x-cloak x-transition>
                     <ul class="flex flex-col">
-                        <a href="{{ route('search', 'search=napkin') }}" class="py-2 border-b border-gray-100 hover:text-orange-400 transition-all">Napkins</a>
-                        <a href="{{ route('search', 'search=towel') }}" class="py-2 border-b border-gray-100 hover:text-orange-400 transition-all">Towels</a>
+                        <a href="{{ route('search', 'search=napkin') }}" class="py-2 border-b border-gray-100 hover:text-orange-400 transition-all" title="Napkins">Napkins</a>
+                        <a href="{{ route('search', 'search=towel') }}" class="py-2 border-b border-gray-100 hover:text-orange-400 transition-all" title="Tea Towels">Tea Towels</a>
                         <a href="{{ route('products') }}" class="pt-2 hover:text-orange-400 transition-all">All</a>
                     </ul>
                 </div>
@@ -46,8 +46,8 @@
             <ul class="absolute w-[200px] text-start right-1 top-10 rounded-lg bg-black text-white flex flex-col bg-dark p-6 link" x-show="open" x-transition x-cloak>
                 <a class="pb-3 border-b border-white/10" href="{{ route('home') }}">Home</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('products') }}">Products</a>
-                <a class="py-3 border-b border-white/10" href="{{ route('search', 'search=napkin') }}">Napkins</a>
-                <a class="py-3 border-b border-white/10" href="{{ route('search', 'search=towel') }}">Towels</a>
+                <a class="py-3 border-b border-white/10" title="Napkins" href="{{ route('search', 'search=napkin') }}">Napkins</a>
+                <a class="py-3 border-b border-white/10" title="Tea Towers" href="{{ route('search', 'search=towel') }}">Tea Towels</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('cart') }}">Cart <span class="h-fit w-fit font-semibold text-[10px] rounded-full bg-white p-[5px] px-[10px] text-black">{{ $products_count }}</span></a>
                 <a class="py-3 border-b border-white/10" href="{{ route('about') }}">About</a>
                 <a class="py-3 border-b border-white/10" href="{{ route('order.track') }}">Tracking</a>

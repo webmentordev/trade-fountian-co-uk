@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 class SingleProduct extends Component
 {
-    public $product, $quantity = 1;
+    public $product, $quantity = 1, $products;
 
     protected $rules = [
         'quantity' => 'required|numeric|min:1|max:20'
@@ -43,6 +43,8 @@ class SingleProduct extends Component
         JsonLd::setDescription($product->seo);
         JsonLd::setType("WebSite");
         JsonLd::addImage(config('app.url').'/storage/'.$product->image);
+
+        $this->products = Product::inRandomOrder()->limit(3)->get();
     }
 
     public function render()
