@@ -39,7 +39,7 @@
                     </div>
                 @endif
             @else
-                <p class="py-3 text-center">No reviewe data exist!</p>
+                <p class="py-3 text-center">No reviews data exist!</p>
             @endif
         </div>
     </div>

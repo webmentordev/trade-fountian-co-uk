@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteMapController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailController;
 use App\Http\Livewire\Products\SingleProduct;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\TrackController;
@@ -56,6 +57,10 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
     Route::get('/create/review', [ReviewController::class, 'create'])->name('create.review');
     Route::post('/post/review', [ReviewController::class, 'store'])->name('post.review');
+    
+    Route::get('/emails', [EmailController::class, 'index'])->name('emails');
+    Route::post('/email/send', [EmailController::class, 'store'])->name('email.send');
+    
     
     Route::get('/post/review/{review:id}', [ReviewController::class, 'update'])->name('review.update');
     Route::patch('/post/review/update/{review:id}', [ReviewController::class, 'review_update'])->name('update.review');

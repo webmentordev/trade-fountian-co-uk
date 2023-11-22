@@ -18,5 +18,5 @@ Order Status
 </x-mail::button>
  
 Thanks,<br>
-Trade Fountain / Dujana LTD
+Trade Fountain
 </x-mail::message>
