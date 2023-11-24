@@ -50,6 +50,8 @@
                                                 <option value="transit">In Transit</option>
                                                 <option value="completed">Completed</option>
                                                 <option value="cancelled">Cancelled</option>
+                                                <option value="refunding">Refunding</option>
+                                                <option value="refunded">Refunded</option>
                                             </select>
                                         </form>
                                     @else
