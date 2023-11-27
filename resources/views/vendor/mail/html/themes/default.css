@@ -86,6 +86,11 @@ img {
     width: 100%;
 }
 
+.trustpilot{
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
 .content {
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
