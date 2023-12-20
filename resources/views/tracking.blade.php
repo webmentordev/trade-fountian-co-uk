@@ -19,7 +19,7 @@
                 
                 @if ($order != null)
                     <div class="relative mb-5 pt-1 w-full">
-                        @if ($order->shipping != "cancelled")
+                        @if ($order->shipping != "cancelled" && $order->shipping != "refunding" && $order->shipping != "refunded")
                             <div class="mb-2 flex items-center justify-between text-xs">
                                 <img width="30px" src="https://api.iconify.design/eos-icons:bubble-loading.svg?color=%232bd5f7" alt="Processing">
                                 <img width="30px" src="https://api.iconify.design/tabler:shield-check-filled.svg?color=%232bd5f7" alt="Processed">
@@ -41,6 +41,10 @@
                                 <div style="width: 65%" class="bg-green-500 rounded-lg"></div>
                             @elseif ($order->shipping == "cancelled")
                                 <div style="width: 100%" class="bg-red-500 rounded-lg"></div>
+                            @elseif ($order->shipping == "refunding")
+                                <div style="width: 50%" class="bg-red-500 rounded-lg"></div>
+                            @elseif ($order->shipping == "refunded")
+                                <div style="width: 100%" class="bg-red-500 rounded-lg"></div>
                             @else
                                 <div style="width: 100%" class="bg-green-500 rounded-lg"></div>
                             @endif
@@ -49,6 +53,17 @@
                             <div class="mb-2 flex items-center justify-between text-xs">
                                 <div class="text-gray-400">Processed</div>
                                 <div class="text-gray-400">Cancelled</div>
+                            </div>
+                        @elseif ($order->shipping == "refunding")
+                            <div class="mb-2 flex items-center justify-between text-xs">
+                                <div class="text-gray-400">Processed</div>
+                                <div class="text-gray-400">Refunding</div>
+                                <div class="text-gray-400">Refunded</div>
+                            </div>
+                        @elseif ($order->shipping == "refunded")
+                            <div class="mb-2 flex items-center justify-between text-xs">
+                                <div class="text-gray-400">Processed</div>
+                                <div class="text-gray-400">Refunded</div>
                             </div>
                         @else
                             <div class="mb-2 flex items-center justify-between text-xs">

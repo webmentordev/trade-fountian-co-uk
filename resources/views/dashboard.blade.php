@@ -31,7 +31,11 @@
                                 <td>x{{ $order->quantity }}</td>
                                 <td class="capitalize">
                                     @if ($order->status == "completed")
-                                        <span class="bg-green-600/10 rounded-full border-green-600 border p-1 font-semibold px-4 text-green-600">Paid</span>
+                                        @if ($order->shipping == "refunded")
+                                            <span class="bg-red-600/10 rounded-full border-red-600 border p-1 font-semibold px-4 text-red-600">Refunded</span>
+                                        @else
+                                            <span class="bg-green-600/10 rounded-full border-green-600 border p-1 font-semibold px-4 text-green-600">Paid</span>
+                                        @endif
                                     @elseif($order->status == "cancelled")
                                         <span class="bg-red-600/10 rounded-full border-red-600 border p-1 font-semibold px-4 text-red-600">Cancelled</span>
                                     @else
@@ -39,7 +43,7 @@
                                     @endif
                                 </td>
                                 <td class="py-1">
-                                    @if ($order->shipping != 'cancelled')
+                                    @if ($order->shipping != 'cancelled' && $order->shipping != 'refunded')
                                         <form action="{{ route('update.shipping', $order->order_id) }}" method="post">
                                             @csrf
                                             @method('PATCH')
@@ -55,7 +59,11 @@
                                             </select>
                                         </form>
                                     @else
-                                        <span class="bg-red-600/10 rounded-full border-red-600 border p-1 font-semibold px-4 text-red-600">Cancelled</span>
+                                        @if ($order->shipping == 'refunded')
+                                            <span class="bg-red-600/10 rounded-full border-red-600 border p-1 font-semibold px-4 text-red-600">Refunded</span>
+                                        @else
+                                            <span class="bg-red-600/10 rounded-full border-red-600 border p-1 font-semibold px-4 text-red-600">Cancelled</span>
+                                        @endif
                                     @endif
                                 </td>
                                 <td class="flex justify-end items-center h-fit px-4" x-data="{ open: false}">
