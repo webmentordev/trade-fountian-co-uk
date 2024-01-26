@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\OrderPlaced;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Product;
@@ -16,6 +17,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CartArea extends Component
 {
@@ -149,7 +151,7 @@ class CartArea extends Component
                 'cancel_url' => config('app.url').'/cancel/'.$checkout_id,
                 'currency' => "GBP",
                 'billing_address_collection' => 'required',
-                'expires_at' => Carbon::now()->addMinutes(60)->timestamp,
+                'expires_at' => Carbon::now()->addMinutes(360)->timestamp,
                 'line_items' => $array,
                 'mode' => 'payment'
             ]);
@@ -163,8 +165,11 @@ class CartArea extends Component
             ]);
 
             Http::post(config('app.discord'), [
-                'content' => "Order has been placed under id: ". $order_id. "\n===================\n"
+                'content' => "Order has been placed under id: ". $order_id. "\n* CheckoutURL: ".$checkout['url']."\n===================\n"
             ]);
+
+            Mail::to($this->email)->send(new OrderPlaced($checkout['url']));
+
             session(['cart' => []]);
             return redirect($checkout['url']);
         }else{

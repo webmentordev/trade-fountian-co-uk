@@ -23,9 +23,9 @@
                             </div>
 
                             <div class="mb-3 w-full">
-                                <x-input-label for="subject" :value="__('Subject')" />
+                                <x-input-label for="body" :value="__('Content')" />
                                 <textarea id="editor" name="body"></textarea>
-                                <x-input-error :messages="$errors->get('subject')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('body')" class="mt-2" />
                             </div>
 
                             <label for="files" class="mb-3 cursor-pointer">
