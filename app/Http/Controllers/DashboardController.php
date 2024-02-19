@@ -29,8 +29,6 @@ class DashboardController extends Controller
 
         if($request->status == "processed"){
             Mail::to($cart_info->address->email)->send(new Processed($cart_info->order_id, $cart_info->address->name));
-        }elseif($request->status == "transit"){
-            Mail::to($cart_info->address->email)->send(new Shipped($cart_info->order_id, $cart_info->address->name));
         }elseif($request->status == "completed"){
             Mail::to($cart_info->address->email)->send(new Completed($cart_info->order_id, $cart_info->address->name));
         }elseif($request->status == "canceled"){
@@ -41,6 +39,10 @@ class DashboardController extends Controller
             Mail::to($cart_info->address->email)->send(new Refunded($cart_info->order_id, $cart_info->address->name));
         }
 
+        /* elseif($request->status == "transit"){
+            Mail::to($cart_info->address->email)->send(new Shipped($cart_info->order_id, $cart_info->address->name));
+        }*/
+        
         $cart = Cart::where('order_id', $cart)->update(['shipping' => $request->status]);
 
         return back();
